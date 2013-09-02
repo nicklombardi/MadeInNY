@@ -1,0 +1,2 @@
+## Read Me
+Visualizing the NYC startup scene.

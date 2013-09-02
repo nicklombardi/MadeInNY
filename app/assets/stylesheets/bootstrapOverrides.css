@@ -1,0 +1,28 @@
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 0;
+  background-color: #F5F5F5;
+  border: none;
+  border-bottom: 1px solid #DDDDDD;
+  opacity: 1;
+}
+
+.navbar-brand {
+  float: left;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-right: 7.5px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #333333;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #666666;
+  text-decoration: none;
+  background-color: transparent;
+}
