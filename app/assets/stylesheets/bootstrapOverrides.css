@@ -1,11 +1,22 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 200;
+  background-color: #B8DBFC;
+}
+
 .navbar {
   position: relative;
   min-height: 50px;
   margin-bottom: 0;
-  background-color: #F5F5F5;
+  background-color: transparent;
   border: none;
-  border-bottom: 1px solid #DDDDDD;
-  opacity: 1;
+/*  border-bottom: 1px solid #FFFFFF;
+  opacity: 1;*/
 }
 
 .navbar-brand {
@@ -16,8 +27,7 @@
   font-size: 18px;
   line-height: 20px;
   color: #333333;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
+  font-family: "HelveticaNeue", "Helvetica NeuE", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .navbar-brand:hover,
@@ -25,4 +35,23 @@
   color: #666666;
   text-decoration: none;
   background-color: transparent;
+}
+
+.panel-default {
+  border-color: #999999;
+}
+
+.panel-default > .panel-heading {
+  color: #333333;
+  background-color: #DBDCDE;
+  border-color: #999999;
+  font-size: 16px;
+}
+
+.panel-default > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #999999;
+}
+
+.panel-default > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #999999;
 }
