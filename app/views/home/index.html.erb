@@ -1,0 +1,73 @@
+<div class="map">
+<script type="text/javascript">
+
+var width = 2000,
+    height = 1500;
+
+var projection = d3.geo.albers()
+      .translate([100, 750])
+      .scale(50000)
+      .rotate([73.94, 0])
+      .center([0, 40.67])
+      .precision(1);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var graticule = d3.geo.graticule()
+    .extent([[-98 - 45, 38 - 45], [-98 + 45, 38 + 45]])
+    .step([5, 5]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+d3.json("assets/us.json", function(error, us) {
+  svg.insert("path", ".graticule")
+      .datum(topojson.feature(us, us.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
+
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
+      .attr("class", "county-boundary")
+      .attr("d", path);
+
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .attr("class", "state-boundary")
+      .attr("d", path);
+});
+
+d3.select(self.frameElement).style("height", height + "px");
+
+</script>
+
+</div>
+
+<div class="container data">
+<div class="row">
+  <div class="col-md-5 col-md-offset-7">
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="glyphicon glyphicon-sort"></span>&nbsp trends</div>
+      <div class="panel-body">
+        data
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="glyphicon glyphicon-signal"></span>&nbsp markets</div>
+      <div class="panel-body">
+        data
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

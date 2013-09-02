@@ -10,7 +10,7 @@ body {
 }
 
 .navbar {
-  position: relative;
+  position: absolute;
   min-height: 50px;
   margin-bottom: 0;
   background-color: transparent;
@@ -35,6 +35,12 @@ body {
   color: #666666;
   text-decoration: none;
   background-color: transparent;
+}
+
+.data {
+  position: absoute;
+  margin-top: -1400px;
+  z-index: 10;
 }
 
 .panel-default {
