@@ -20,6 +20,9 @@ module MadeInNY
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+     # Enable the asset pipeline
+    config.assets.enabled = true
+
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # config.assets.paths << Rails.root.join("app", "assets", "ico")
