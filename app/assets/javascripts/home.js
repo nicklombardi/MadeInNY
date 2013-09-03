@@ -11,7 +11,9 @@ var companiesObject,
     };
 
 // this is just for our knowledge (seeing what the categories are)
-var testArray = [];
+var allCategoriesArray = [],
+    numberOfCompaniesWithFunding = 0,
+    fundingArray = [];
 
 var getCompanyData = {
     dataFromDatabase: function() {
@@ -43,6 +45,7 @@ var getCompanyData = {
 
         for(i = 0; i < length; i++) {
             // total_money_raised attribute is currently in format of $6M or $316k
+            // console.log(data[i].total_money_raised);
             fundingString = data[i].total_money_raised;
             fundingArray = fundingString.split("$");
             thousandOrMillion = fundingArray[1][fundingArray[1].length - 1];
@@ -52,14 +55,17 @@ var getCompanyData = {
                 totalFunding = parseFloat(fundingArray[1]) / 1000;
             } else if (thousandOrMillion === "M") {
                 totalFunding = parseFloat(fundingArray[1]);
+            } else if (fundingArray[1] === "0") {
+                totalFunding = 0;
             }
+            console.log(totalFunding);
 
             // populates global variable dataset array
             dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
 
             // this keeps track of how many companies belong to a category
             category = data[i].category_code;
-            testArray.push(category);
+            allCategoriesArray.push(category);
             if (category === "fashion") {
                 categories.fashion += 1;
             } else if (category === "travel") {
@@ -70,6 +76,11 @@ var getCompanyData = {
                 categories.advertising += 1;
             } else if (category === "music") {
                 categories.art += 1;
+            }
+
+            // keeps track of number of companies with funding
+            if (data[i].total_money_raised !== "nil") {
+                numberOfCompaniesWithFunding += 1;
             }
         }
 
