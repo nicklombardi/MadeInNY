@@ -1,7 +1,18 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 var companiesObject,
-    dataset = [];
+    dataset = [],
+    categories = {
+        fashion: 0,
+        travel: 0,
+        tech: 0,
+        advertising: 0,
+        art: 0
+    };
+
+// this is just for our knowledge (seeing what the categories are)
+var allCategoriesArray = [],
+    numberOfCompaniesWithoutFunding = 0;
 
 var getCompanyData = {
     dataFromDatabase: function() {
@@ -28,7 +39,8 @@ var getCompanyData = {
             fundingString,
             fundingArray,
             thousandOrMillion,
-            totalFunding;
+            totalFunding,
+            category;
 
         for(i = 0; i < length; i++) {
             // total_money_raised attribute is currently in format of $6M or $316k
@@ -41,10 +53,30 @@ var getCompanyData = {
                 totalFunding = parseFloat(fundingArray[1]) / 1000;
             } else if (thousandOrMillion === "M") {
                 totalFunding = parseFloat(fundingArray[1]);
+            } else if (fundingArray[1] === "0") {
+                totalFunding = 0;
+                numberOfCompaniesWithoutFunding += 1;
             }
+            console.log(totalFunding);
 
             // populates global variable dataset array
             dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
+
+            // this keeps track of how many companies belong to a category
+            category = data[i].category_code;
+            allCategoriesArray.push(category);
+            if (category === "fashion") {
+                categories.fashion += 1;
+            } else if (category === "travel") {
+                categories.travel += 1;
+            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "ecommerce")) {
+                categories.tech += 1;
+            } else if ((category === "advertising") || (category === "public_relations")) {
+                categories.advertising += 1;
+            } else if (category === "music") {
+                categories.art += 1;
+            }
+
         }
 
         // calls d3PlotPoints function to create points and description divs using global variable dataset
