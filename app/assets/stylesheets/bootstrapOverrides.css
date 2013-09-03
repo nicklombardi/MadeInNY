@@ -6,6 +6,9 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 200;
+  background-image: url(/assets/map.svg);
+  background-height: 1500px;
+  background-repeat: no-repeat;
   background-color: #B8DBFC;
 }
 
@@ -21,13 +24,14 @@ body {
 
 .navbar-brand {
   float: left;
+  padding-left: 20px;
   padding-top: 15px;
   padding-bottom: 15px;
   margin-right: 7.5px;
   font-size: 18px;
   line-height: 20px;
   color: #333333;
-  font-family: "HelveticaNeue", "Helvetica NeuE", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .navbar-brand:hover,
@@ -35,12 +39,6 @@ body {
   color: #666666;
   text-decoration: none;
   background-color: transparent;
-}
-
-.data {
-  position: absoute;
-  margin-top: -1400px;
-  z-index: 10;
 }
 
 .panel-default {

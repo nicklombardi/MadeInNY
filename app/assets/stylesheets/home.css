@@ -1,23 +1,9 @@
-.map {
-  margin-top: -50px;
+.data {
+  position: relative;
+  z-index: 15;
+  margin-top: -900px;
 }
 
-.graticule {
-  fill: none;
-}
-
-.land {
-  fill: #DBDCDE;
-}
-
-.county-boundary {
-  fill: none;
-/*  stroke: #fff;
-  stroke-width: .5px;*/
-}
-
-.state-boundary {
-  fill: none;
-  stroke-width: .5px;
-  stroke: #fff;
+.dot {
+  stroke: #ffffff;
 }
