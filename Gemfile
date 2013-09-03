@@ -26,4 +26,5 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
+# gem 'foreman-env'
