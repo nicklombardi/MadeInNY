@@ -1,10 +1,10 @@
 .data {
   position: relative;
   z-index: 15;
-  margin-top: -900px;
+  margin-top: -950px;
 }
 
-.dot {
+.dot95
   stroke: #ffffff;
 }
 
