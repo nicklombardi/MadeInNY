@@ -4,7 +4,12 @@
   margin-top: -950px;
 }
 
-.dot95 {
+.d3-object {
+  postion: absolute;
+  z-index: 20;
+}
+
+.dot {
   stroke: #ffffff;
 }
 
@@ -20,3 +25,4 @@
   font: 20px;
   fill: #fff;
 }
+

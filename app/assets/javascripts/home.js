@@ -62,7 +62,7 @@ var getCompanyData = {
             .scale(255000) 
             .translate([752.2, 687.5]);
 
-        var svg = d3.select("body")
+        var svg = d3.select(".d3-object")
             .append("svg")
             .attr("width", w)
             .attr("height", h);
@@ -82,7 +82,7 @@ var getCompanyData = {
                 return color(d[2]);
             });
 
-        var div = d3.select("body").append("div")
+        var div = d3.select(".d3-object").append("div")
             .style("position", "absolute")
             .style("text-align", "left")
             .style("background", "white")
