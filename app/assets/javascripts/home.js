@@ -12,8 +12,7 @@ var companiesObject,
 
 // this is just for our knowledge (seeing what the categories are)
 var allCategoriesArray = [],
-    numberOfCompaniesWithFunding = 0,
-    fundingArray = [];
+    numberOfCompaniesWithoutFunding = 0;
 
 var getCompanyData = {
     dataFromDatabase: function() {
@@ -45,7 +44,6 @@ var getCompanyData = {
 
         for(i = 0; i < length; i++) {
             // total_money_raised attribute is currently in format of $6M or $316k
-            // console.log(data[i].total_money_raised);
             fundingString = data[i].total_money_raised;
             fundingArray = fundingString.split("$");
             thousandOrMillion = fundingArray[1][fundingArray[1].length - 1];
@@ -57,6 +55,7 @@ var getCompanyData = {
                 totalFunding = parseFloat(fundingArray[1]);
             } else if (fundingArray[1] === "0") {
                 totalFunding = 0;
+                numberOfCompaniesWithoutFunding += 1;
             }
             console.log(totalFunding);
 
@@ -78,10 +77,6 @@ var getCompanyData = {
                 categories.art += 1;
             }
 
-            // keeps track of number of companies with funding
-            if (data[i].total_money_raised !== "nil") {
-                numberOfCompaniesWithFunding += 1;
-            }
         }
 
         // calls d3PlotPoints function to create points and description divs using global variable dataset
