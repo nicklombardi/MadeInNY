@@ -1,9 +1,9 @@
 window.onload=function(){
 
-var agg = { label: 'New York', pct: [19, 10, 6, 30, 14] },
-    bal = { label: 'Silicon Valley',   pct: [24,  7, 2, 18, 13] },
+var ny = { label: 'New York', pct: [19, 10, 6, 30, 14] },
+    sv = { label: 'Silicon Valley',   pct: [24,  7, 2, 18, 13] },
 
-    data = agg;
+    data = ny;
 
 var labels = ['Tech', 'Advertising', 'Art', 'Fashion', 'Travel'];
 
@@ -16,7 +16,7 @@ var w = 320,                       // width and height, natch
     arc = d3.svg.arc().innerRadius(r - 70).outerRadius(r - 20);
 
 // ---------------------------------------------------------------------
-var svg = d3.select("#d3portfolio").append("svg:svg")
+var svg = d3.select("#donut").append("svg:svg")
     .attr("width", w).attr("height", h);
 
 var arc_grp = svg.append("svg:g")
@@ -69,6 +69,8 @@ function arcTween(a) {
     };
 }
 
+
+
 // update chart
 function updateChart(model) {
     data = eval(model); // which model?
@@ -85,7 +87,7 @@ function updateChart(model) {
 }
 
 // click handler
-$("#objectives a").click(function() {
+$("#category a").click(function() {
     updateChart(this.href.slice(this.href.indexOf('#') + 1));
 });
 

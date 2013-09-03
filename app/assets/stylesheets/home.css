@@ -4,19 +4,19 @@
   margin-top: -950px;
 }
 
-.dot95
+.dot95 {
   stroke: #ffffff;
 }
 
-#d3portfolio {
+#donut {
   width: 320px;
   height: 320px;
 }
 .chartLabel {
-  font: 16px sans-serif;
+  font: 18px;
   fill: #666;
 }
 .arcLabel {
-  font: 10px sans-serif;
+  font: 20px;
   fill: #fff;
 }
