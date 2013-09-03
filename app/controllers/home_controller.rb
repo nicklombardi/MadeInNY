@@ -1,6 +1,13 @@
 class HomeController < ApplicationController
+  # GET /home
+  # GET /home.json
   def index
     @companies = Company.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @companies }
+    end
   end
 
   private

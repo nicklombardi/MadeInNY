@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130903150258) do
     t.string   "twitter_username"
     t.text     "description"
     t.integer  "founded_year"
-    t.integer  "total_money_raised"
+    t.string   "total_money_raised"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
