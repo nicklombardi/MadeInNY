@@ -10,6 +10,17 @@ class HomeController < ApplicationController
     end
   end
 
+  # GET /silicon
+  # GET /silicon.json
+  def silicon
+    @silicons = Silicon.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @silicons }
+    end
+  end
+
   private
   # This is all of my private methods
   def company_params

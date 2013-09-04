@@ -20,23 +20,25 @@ var allCategoriesArray = [],
 var getCompanyData = {
     dataFromDatabase: function() {
         var that = this;
-        console.log("going to make ajax request");
+        console.log("going to make ajax request for companies");
 
         // retrieves data from home controller index action
+        // data for dots on map
         $.ajax({
             url: '/home.json',
             dataType: 'json',
             data: 'GET'
         }).done(function (data) {
-            console.log("got data from database");
+            console.log("got data from companies database");
             console.log(data);
             companiesObject = data;
             // calls prepDataForD3 function
             that.prepDataForD3(data);
+            that.getSiliconData();
         });
     },
     prepDataForD3: function(data) {
-        console.log("prepping data");
+        console.log("prepping companies data");
         var i,
             length = data.length,
             fundingString,
@@ -70,6 +72,7 @@ var getCompanyData = {
             // console.log(totalFunding);
 
             // populates global variable dataset array
+            // for dots
             dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
 
             // this keeps track of how many companies belong to a category
@@ -173,6 +176,20 @@ var getCompanyData = {
         d3.selectAll(".dot")
             .on("mouseover", mouseover)
             .on("mouseout", mouseout);
+    },
+    getSiliconData: function() {
+        var that = this;
+        console.log("sending request for silicon valley database");
+
+        $.ajax({
+            url: '/silicon.json',
+            dataType: 'json',
+            data: 'GET'
+        }).done(function(data) {
+            console.log("got silicon valley data, mofos");
+            console.log(data);
+            // that.prepDataForDonut(data);
+        });
     }
 };
 
