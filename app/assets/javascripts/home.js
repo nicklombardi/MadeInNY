@@ -4,10 +4,13 @@ var companiesObject,
     dataset = [],
     categories = {
         fashion: 0,
-        travel: 0,
         tech: 0,
         advertising: 0,
-        art: 0
+        other: 0,
+        ecommerce: 0,
+        finance: 0,
+        education: 0,
+        enterprise: 0
     };
 
 // this is just for our knowledge (seeing what the categories are)
@@ -64,7 +67,7 @@ var getCompanyData = {
                 totalFunding = 70;
             }
 
-            console.log(totalFunding);
+            // console.log(totalFunding);
 
             // populates global variable dataset array
             dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
@@ -72,16 +75,23 @@ var getCompanyData = {
             // this keeps track of how many companies belong to a category
             category = data[i].category_code;
             allCategoriesArray.push(category);
+
             if (category === "fashion") {
                 categories.fashion += 1;
-            } else if (category === "travel") {
-                categories.travel += 1;
-            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "ecommerce")) {
+            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "photo_video")) {
                 categories.tech += 1;
             } else if ((category === "advertising") || (category === "public_relations")) {
                 categories.advertising += 1;
-            } else if (category === "music") {
-                categories.art += 1;
+            } else if (category === "ecommerce") {
+                categories.ecommerce += 1;
+            } else if (category === "finance") {
+                categories.finance += 1;
+            } else if (category === "education") {
+                categories.education += 1;
+            } else if (category === "enterprise") {
+                categories.enterprise += 1;
+            } else {
+                categories.other += 1;
             }
 
         }
