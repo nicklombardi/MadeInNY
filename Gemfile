@@ -27,4 +27,3 @@ group :doc do
 end
 
 gem 'dotenv-rails'
-# gem 'foreman-env'
