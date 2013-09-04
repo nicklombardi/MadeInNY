@@ -1,6 +1,7 @@
-namespace :get_data => :environment do
+namespace get_data: :environment do
+  desc "gets data from crunchbase"
 
-task :from_companies => :dotenv do
+task from_companies: :dotenv do
   require 'open-uri'
   require 'json'
   require 'dotenv/tasks'
