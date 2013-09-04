@@ -54,9 +54,16 @@ var getCompanyData = {
             } else if (thousandOrMillion === "M") {
                 totalFunding = parseFloat(fundingArray[1]);
             } else if (fundingArray[1] === "0") {
-                totalFunding = 0;
+                totalFunding = 10;
                 numberOfCompaniesWithoutFunding += 1;
             }
+
+            if (totalFunding < 10) {
+                totalFunding = totalFunding + 10;
+            } else if (totalFunding > 70) {
+                totalFunding = 70;
+            }
+
             console.log(totalFunding);
 
             // populates global variable dataset array
