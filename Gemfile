@@ -10,7 +10,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'pg'
 
 group :production do
-  gem 'rails_12factor'
   gem 'unicorn'
   gem 'dalli'
   gem 'memcachier'
