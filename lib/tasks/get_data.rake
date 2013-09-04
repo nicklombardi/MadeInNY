@@ -1,4 +1,4 @@
-task :get_extra_company_data => :environment, :dotenv do
+task :get_data => :environment, :dotenv do
 
   require 'open-uri'
   require 'json'
