@@ -1,5 +1,6 @@
-task :get_extra_company_data => :dotenv do
+namespace :get_data => :environment do
 
+task :from_companies => :dotenv do
   require 'open-uri'
   require 'json'
   require 'dotenv/tasks'
@@ -38,4 +39,5 @@ task :get_extra_company_data => :dotenv do
   end
   crunchbase_file.close
 
+end
 end
