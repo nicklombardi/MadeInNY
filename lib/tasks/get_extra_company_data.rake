@@ -4,9 +4,9 @@
 #  require 'json'
 #  require 'dotenv'
 
-# text file
-# crunchbase_file = File.new('companyNames.txt', 'r')
-# my_key = ENV['api_key']
+#  # text file
+#  crunchbase_file = File.new('companyNames.txt', 'r')
+#  my_key = ENV['api_key']
 
 #  # splits each line into an array of elements and assigns elements as values of keys in Company object
 #  i = 0
