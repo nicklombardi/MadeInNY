@@ -8,6 +8,8 @@ task :get_extra_company_data => :dotenv do
   crunchbase_file = File.new('companyNames.txt', 'r')
   my_key = ENV['api_key']
 
+  Company = ""
+
   # splits each line into an array of elements and assigns elements as values of keys in Company object
   i = 0
   crunchbase_file.each do |line|
