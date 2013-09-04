@@ -1,6 +1,6 @@
 window.onload=function(){
 
-var ny = { label: 'New York', pct: [19, 10, 6, 30, 14] },
+var ny = { label: 'New York', pct: [111, 22, 2, 6, 2] },
     sv = { label: 'Silicon Valley',   pct: [24,  7, 2, 18, 13] },
 
     data = ny;
