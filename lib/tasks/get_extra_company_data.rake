@@ -2,7 +2,7 @@ task :get_extra_company_data => :environment do
 
   require 'open-uri'
   require 'json'
-  require 'dotenv'
+  require 'dotenv/tasks'
 
   # csv file from NYC open data
   crunchbase_file = File.new('companyNames.txt', 'r')
