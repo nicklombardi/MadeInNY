@@ -1,6 +1,6 @@
 MadeInNY::Application.routes.draw do
 
-  root 'welcome#index'
+  root 'home#index'
   get '/silicon' => 'home#silicon'
 
   # Example of regular route:
