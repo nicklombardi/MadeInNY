@@ -1,11 +1,11 @@
 window.onload=function(){
 
-var ny = { label: 'New York', pct: [111, 22, 2, 6, 2] },
-    sv = { label: 'Silicon Valley',   pct: [24,  7, 2, 18, 13] },
+var ny = { label: 'New York', pct: [111, 22, 12, 12, 6, 6] },
+    sv = { label: 'Silicon Valley',   pct: [24,  7, 2, 18, 13, 6] },
 
     data = ny;
 
-var labels = ['Tech', 'Advertising', 'Art', 'Fashion', 'Travel'];
+var labels = ['Tech', 'Adv.', 'Art', 'Fash.', 'Trav.', "Other"];
 
 var w = 320,                       // width and height, natch
     h = 320,
@@ -57,7 +57,6 @@ sliceLabel.enter().append("svg:text")
     .attr("text-anchor", "middle")
     .text(function(d, i) {return labels[i]; });
 
-// --------- "PAY NO ATTENTION TO THE MAN BEHIND THE CURTAIN" ---------
 
 // Store the currently-displayed angles in this._current.
 // Then, interpolate from this._current to the new angles.
@@ -85,6 +84,7 @@ function updateChart(model) {
 
     pieLabel.text(data.label);
 }
+
 
 // click handler
 $("#category a").click(function() {
