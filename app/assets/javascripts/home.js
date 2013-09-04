@@ -1,8 +1,20 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 var companiesObject,
+    // for making dots
     dataset = [],
+    // for making new york part of donut
     categories = {
+        fashion: 0,
+        tech: 0,
+        advertising: 0,
+        other: 0,
+        ecommerce: 0,
+        finance: 0,
+        education: 0,
+        enterprise: 0
+    },
+    siliconCategories = {
         fashion: 0,
         tech: 0,
         advertising: 0,
@@ -13,7 +25,7 @@ var companiesObject,
         enterprise: 0
     };
 
-// this is just for our knowledge (seeing what the categories are)
+// this is just for our knowledge (seeing what the categories are) and how many companies we don't have funding info for
 var allCategoriesArray = [],
     numberOfCompaniesWithoutFunding = 0;
 
@@ -188,8 +200,39 @@ var getCompanyData = {
         }).done(function(data) {
             console.log("got silicon valley data, mofos");
             console.log(data);
-            // that.prepDataForDonut(data);
+            that.prepDataForDonut(data);
         });
+    },
+    prepDataForDonut: function(data) {
+        var j,
+            siliconLength = data.length,
+            category;
+        console.log("about to mess this mothereffer up");
+
+        for (j = 0; j < siliconLength; j++) {
+
+            // keeping track of categories of silicon valley companies
+            category = data[j].category_code;
+
+            if (category === "fashion") {
+                siliconCategories.fashion += 1;
+            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "photo_video") || (category === "security") || (category === "network_hosting") || (category === "biotech")) {
+                siliconCategories.tech += 1;
+            } else if ((category === "advertising") || (category === "public_relations")) {
+                siliconCategories.advertising += 1;
+            } else if (category === "ecommerce") {
+                siliconCategories.ecommerce += 1;
+            } else if (category === "finance") {
+                siliconCategories.finance += 1;
+            } else if (category === "education") {
+                siliconCategories.education += 1;
+            } else if (category === "enterprise") {
+                siliconCategories.enterprise += 1;
+            } else {
+                siliconCategories.other += 1;
+            }
+
+        }
     }
 };
 

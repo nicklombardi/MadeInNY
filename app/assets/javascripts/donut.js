@@ -1,7 +1,7 @@
 window.onload=function(){
 
 var ny = { label: 'New York', pct: [6, 94, 22, 19, 8, 26, 10, 10] },
-    sv = { label: 'Silicon Valley',   pct: [24, 7, 2, 18, 13, 6, 20, 19] },
+    sv = { label: 'Silicon Valley',   pct: [1, 117, 15, 9, 5, 32, 4, 16] },
 
     data = ny;
 
