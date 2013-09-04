@@ -128,6 +128,7 @@ var getCompanyData = {
             .style("background", "white")
             .style("border-radius", "4px")
             .style("padding", "10px")
+            .style("padding-top", "5px")
             .style("border", "solid 1px #DBDCDE")
             .style("opacity", 0);
 
