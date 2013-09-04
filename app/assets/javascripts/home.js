@@ -111,6 +111,7 @@ var getCompanyData = {
             .enter()
             .append("circle")
             .attr("class", "dot")
+            .style("opacity", 0.8)
             .attr("transform", function(d){
                 return "translate(" + projection([d[0], d[1]]) + ")";
             })
@@ -126,7 +127,7 @@ var getCompanyData = {
             .style("text-align", "left")
             .style("background", "white")
             .style("border-radius", "4px")
-            .style("padding", "6px")
+            .style("padding", "10px")
             .style("border", "solid 1px #DBDCDE")
             .style("opacity", 0);
 
@@ -137,7 +138,7 @@ var getCompanyData = {
                 .attr("r", (d[2]/2))
                 .duration(500);
 
-            div.html(d[3] +  "<br />" + d[4])
+            div.html("<h4>" + d[3] + "</h4>" +  "<hr>" + d[4] )
                 .style("left", (d3.event.pageX + 9) + "px")
                 .style("top", (d3.event.pageY - 43) + "px")
                 div
