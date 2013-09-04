@@ -26,8 +26,6 @@ MadeInNY::Application.configure do
 
   config.cache_store = :dalli_store
 
-  config.serve_static_assets = true
-
   config.static_cache_control = "public, max-age=2592000"
 
   config.assets.digest = true
@@ -36,10 +34,6 @@ MadeInNY::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = true
-
-
-    # Enable the asset pipeline
-    config.assets.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
