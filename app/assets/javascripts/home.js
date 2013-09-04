@@ -1,39 +1,56 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 var companiesObject,
+    // for making dots
     dataset = [],
+    // for making new york part of donut
     categories = {
         fashion: 0,
-        travel: 0,
         tech: 0,
         advertising: 0,
-        art: 0
+        other: 0,
+        ecommerce: 0,
+        finance: 0,
+        education: 0,
+        enterprise: 0
+    },
+    siliconCategories = {
+        fashion: 0,
+        tech: 0,
+        advertising: 0,
+        other: 0,
+        ecommerce: 0,
+        finance: 0,
+        education: 0,
+        enterprise: 0
     };
 
-// this is just for our knowledge (seeing what the categories are)
+// this is just for our knowledge (seeing what the categories are) and how many companies we don't have funding info for
 var allCategoriesArray = [],
     numberOfCompaniesWithoutFunding = 0;
 
 var getCompanyData = {
     dataFromDatabase: function() {
         var that = this;
-        console.log("going to make ajax request");
+        console.log("going to make ajax request for companies");
 
         // retrieves data from home controller index action
+        // data for dots on map
         $.ajax({
             url: '/home.json',
             dataType: 'json',
             data: 'GET'
         }).done(function (data) {
-            console.log("got data from database");
+            console.log("got data from companies database");
             console.log(data);
             companiesObject = data;
             // calls prepDataForD3 function
             that.prepDataForD3(data);
+            that.getSiliconData();
         });
     },
     prepDataForD3: function(data) {
-        console.log("prepping data");
+        console.log("prepping companies data");
         var i,
             length = data.length,
             fundingString,
@@ -64,24 +81,32 @@ var getCompanyData = {
                 totalFunding = 70;
             }
 
-            console.log(totalFunding);
+            // console.log(totalFunding);
 
             // populates global variable dataset array
+            // for dots
             dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
 
             // this keeps track of how many companies belong to a category
             category = data[i].category_code;
             allCategoriesArray.push(category);
+
             if (category === "fashion") {
                 categories.fashion += 1;
-            } else if (category === "travel") {
-                categories.travel += 1;
-            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "ecommerce")) {
+            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "photo_video")) {
                 categories.tech += 1;
             } else if ((category === "advertising") || (category === "public_relations")) {
                 categories.advertising += 1;
-            } else if (category === "music") {
-                categories.art += 1;
+            } else if (category === "ecommerce") {
+                categories.ecommerce += 1;
+            } else if (category === "finance") {
+                categories.finance += 1;
+            } else if (category === "education") {
+                categories.education += 1;
+            } else if (category === "enterprise") {
+                categories.enterprise += 1;
+            } else {
+                categories.other += 1;
             }
 
         }
@@ -165,6 +190,51 @@ var getCompanyData = {
         d3.selectAll(".dot")
             .on("mouseover", mouseover)
             .on("mouseout", mouseout);
+    },
+    getSiliconData: function() {
+        var that = this;
+        console.log("sending request for silicon valley database");
+
+        $.ajax({
+            url: '/silicon.json',
+            dataType: 'json',
+            data: 'GET'
+        }).done(function(data) {
+            console.log("got silicon valley data, mofos");
+            console.log(data);
+            that.prepDataForDonut(data);
+        });
+    },
+    prepDataForDonut: function(data) {
+        var j,
+            siliconLength = data.length,
+            category;
+        console.log("about to mess this mothereffer up");
+
+        for (j = 0; j < siliconLength; j++) {
+
+            // keeping track of categories of silicon valley companies
+            category = data[j].category_code;
+
+            if (category === "fashion") {
+                siliconCategories.fashion += 1;
+            } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "photo_video") || (category === "security") || (category === "network_hosting") || (category === "biotech")) {
+                siliconCategories.tech += 1;
+            } else if ((category === "advertising") || (category === "public_relations")) {
+                siliconCategories.advertising += 1;
+            } else if (category === "ecommerce") {
+                siliconCategories.ecommerce += 1;
+            } else if (category === "finance") {
+                siliconCategories.finance += 1;
+            } else if (category === "education") {
+                siliconCategories.education += 1;
+            } else if (category === "enterprise") {
+                siliconCategories.enterprise += 1;
+            } else {
+                siliconCategories.other += 1;
+            }
+
+        }
     }
 };
 

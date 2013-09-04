@@ -1,6 +1,7 @@
 MadeInNY::Application.routes.draw do
 
   root 'welcome#index'
+  get '/silicon' => 'home#silicon'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,11 +1,11 @@
 window.onload=function(){
 
-var ny = { label: 'New York', pct: [111, 22, 12, 12, 6, 6] },
-    sv = { label: 'Silicon Valley',   pct: [24,  7, 2, 18, 13, 6] },
+var ny = { label: 'New York', pct: [6, 94, 22, 19, 8, 26, 10, 10] },
+    sv = { label: 'Silicon Valley',   pct: [1, 117, 15, 9, 5, 32, 4, 16] },
 
     data = ny;
 
-var labels = ['Tech', 'Adv.', 'Art', 'Fash.', 'Trav.', "Other"];
+var labels = ['Fash.', 'Tech', 'Advert.', 'eComm.', 'Fin.', 'Other', 'Edu.', 'Enter.'];
 
 var w = 320,                       // width and height, natch
     h = 320,

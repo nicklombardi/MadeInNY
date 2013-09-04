@@ -4,7 +4,7 @@ task :get_extra_company_data => :environment do
  require 'json'
  require 'dotenv'
 
- # csv file from NYC open data
+ # text file
  crunchbase_file = File.new('companyNames.txt', 'r')
  my_key = ENV['api_key']
 
