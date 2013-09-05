@@ -25,3 +25,4 @@ end
 
 gem 'dotenv-rails'
 gem 'twitter'
+gem "thin"
