@@ -25,7 +25,12 @@
 
       <div class="panel panel-default">
         <div id= "category" class="panel-heading"><span class="glyphicon glyphicon-align-left"></span>&nbsp Sector Diversity
-            <div class="btn-group" style="float:right; margin-top:-6px;">
+          <div id="view_selection_donut" class="btn-group" style="float:right; margin-top:-6px;">
+            <a href="#ny" id="ny" type="button" class="btn btn-default btn active">New York</a>
+            <a href="#sv" id="sv" type="button" class="btn btn-default">Silicon Valley</a>
+          </div>
+        </div>
+           <!--  <div class="btn-group" style="float:right; margin-top:-6px;">
               <button type="button" class="btn btn-default">Location</button>
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
@@ -35,7 +40,7 @@
                 <li><a href="#sv">Silicon Valley</a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
         <div class="panel-body" style="width: 100%; text-align: center;">
           <div id="donut" style="display: inline-block;"></div>
         </div>
@@ -47,12 +52,27 @@
 </div>
 
 <script type="text/coffeescript" src="assets/vis.coffee"></script>
+
 <script type="text/javascript">
   $(document).ready(function() {
       $(document).ready(function() {
         $('#view_selection a').click(function() {
           var view_type = $(this).attr('id');
           $('#view_selection a').removeClass('active');
+          $(this).toggleClass('active');
+          toggle_view(view_type);
+          return false;
+        });
+      });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $(document).ready(function() {
+        $('#view_selection_donut a').click(function() {
+          var view_type = $(this).attr('id');
+          $('#view_selection_donut a').removeClass('active');
           $(this).toggleClass('active');
           toggle_view(view_type);
           return false;
