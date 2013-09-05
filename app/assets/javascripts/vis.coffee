@@ -53,7 +53,7 @@ class BubbleChart
         name: d.name
         org: d.twitter_username
         group: d.group
-        category: d.category
+        category: d.category_code
         x: Math.random() * 900
         y: Math.random() * 800
       }
