@@ -6,6 +6,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
+gem 'coffee-rails', '~> 4.0.0'
 
 gem 'pg'
 
