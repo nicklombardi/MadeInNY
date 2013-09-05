@@ -42,9 +42,10 @@ hr {
 
 .navbar-brand:hover,
 .navbar-brand:focus {
-  color: #666666;
+  color: #333333;
   text-decoration: none;
   background-color: transparent;
+  cursor: default;
 }
 
 .panel-default {
