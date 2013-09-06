@@ -34,7 +34,7 @@
 
 @media (min-width: 990px) {
   .col-md-6 {
-    width: 90%;
+    width: 70%;
   }
 }
 
@@ -46,7 +46,7 @@
   margin-top: -350px;
   }
   .col-md-6 {
-    width: 70%;
+    width: 90%;
   }
 }
 
