@@ -1,6 +1,7 @@
 MadeInNY::Application.routes.draw do
 
   root 'home#index'
+
   get '/silicon' => 'home#silicon'
 
   # Example of regular route:
@@ -12,7 +13,7 @@ MadeInNY::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
     # resources :welcome
 
-    resources :home
+  resources :home
 
 
   # Example resource route with options:

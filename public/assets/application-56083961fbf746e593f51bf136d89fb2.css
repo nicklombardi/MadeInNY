@@ -6897,14 +6897,7 @@ hr {
   border-bottom-color: #999999;
 }
 
-.navbar-static-bottom {
-  min-height: 50px;
-  margin-bottom: 0;
-  background-color: white;
-  border: none;
-/*  border-bottom: 1px solid #FFFFFF;
-  opacity: 1;*/
-}
+
 
 
 
@@ -6934,6 +6927,11 @@ hr {
 .arcLabel {
   font: 20px;
   fill: #fff;
+}
+
+#main-footer {
+  postion: relative;
+  margin-left: 75px;
 }
 
 @media (min-width: 990px) {

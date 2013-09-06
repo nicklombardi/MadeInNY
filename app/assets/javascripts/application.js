@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require plugins
+//= require script
+//= require CustomTooltip
+//= require coffee-script
+//= require d3.min
+//= require d3.layout.min
+//= require d3.geom.min
+//= require vis
 //= require turbolinks
 //= require_tree .
