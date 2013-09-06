@@ -49,11 +49,11 @@ BubbleChart = (function() {
         y: this.height / 2
       },
       "Ecommerce": {
-        x: 2 * this.width / 3.25,
+        x: 2 * this.width / 3.1,
         y: this.height / 2
       },
       "Other": {
-        x: 2 * this.width / 2.7,
+        x: 2 * this.width / 2.5,
         y: this.height / 2
       }
     };
