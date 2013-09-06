@@ -13,13 +13,13 @@
             <a href="#" id="category" type="button" class="btn btn-default">By Sector</a>
           </div>
         </div>
-        <div class="panel-body">
-          <div id="container" class="container">
-            <div id="main" role="main"  style="margin-bottom:-25px; margin-top:-15px;">
+        <div class="panel-body"  style="margin-bottom:-25px; margin-top:-15px;">
+          <!-- <div id="container" class="container"> -->
+            <!-- <div id="main" role="main"  style="margin-bottom:-25px; margin-top:-15px;"> -->
               <div id="vis"></div>
-            </div>
+            <!-- </div> -->
 
-          </div> <!--! end of #container -->
+          <!-- </div>  -->
         </div>
       </div>
 
@@ -51,32 +51,6 @@
 
 </div>
 
-<script type="text/coffeescript" src="assets/vis.coffee"></script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-      $(document).ready(function() {
-        $('#view_selection a').click(function() {
-          var view_type = $(this).attr('id');
-          $('#view_selection a').removeClass('active');
-          $(this).toggleClass('active');
-          toggle_view(view_type);
-          return false;
-        });
-      });
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-      $(document).ready(function() {
-        $('#view_selection_donut a').click(function() {
-          var view_type = $(this).attr('id');
-          $('#view_selection_donut a').removeClass('active');
-          $(this).toggleClass('active');
-          toggle_view(view_type);
-          return false;
-        });
-      });
-  });
-</script>
+<div id="main-footer">
+  <p class="text-muted credit">Created by <a href="mailto:christinetcoulter@gmail.com?Subject=SolarEyes">Christine Coulter</a> and <a href="mailto:nicklombardi@gmail.com?Subject=SolarEyes">Nick Lombardi</a></p>
+</div>

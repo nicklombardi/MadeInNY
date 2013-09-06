@@ -37,8 +37,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
     daemons (1.1.9)
     dalli (2.6.4)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.4)
     dotenv (0.8.0)
     dotenv-rails (0.8.0)
@@ -174,7 +181,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-rails (~> 4.0.0)
   dalli
+  debugger
   dotenv-rails
   factory_girl_rails
   jasmine

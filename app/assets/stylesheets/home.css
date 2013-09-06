@@ -26,6 +26,12 @@
   fill: #fff;
 }
 
+#main-footer {
+  postion: relative;
+  margin-left: 75px;
+  margin-top: 90%;
+}
+
 @media (min-width: 990px) {
   .col-md-6 {
     width: 70%;
@@ -40,7 +46,7 @@
   margin-top: -350px;
   }
   .col-md-6 {
-    width: 70%;
+    width: 90%;
   }
 }
 

@@ -338,4 +338,20 @@ var getCompanyData = {
 $(document).ready(function() {
     console.log("window loaded");
     getCompanyData.dataFromDatabase();
+
+     $('#view_selection a').click(function() {
+          var view_type = $(this).attr('id');
+          $('#view_selection a').removeClass('active');
+          $(this).toggleClass('active');
+          toggle_view(view_type);
+          return false;
+        });
+
+        $('#view_selection_donut a').click(function() {
+          var view_type = $(this).attr('id');
+          $('#view_selection_donut a').removeClass('active');
+          $(this).toggleClass('active');
+          toggle_view(view_type);
+          return false;
+        });
 });
