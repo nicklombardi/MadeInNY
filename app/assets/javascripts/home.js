@@ -25,9 +25,6 @@ var companiesObject,
         enterprise: 0
     };
 
-var forBubbleChart = [];
-var bubbleInBubbleChart = [];
-
 // this is just for our knowledge (seeing what the categories are) and how many companies we don't have funding info for
 var allCategoriesArray = [],
     numberOfCompaniesWithoutFunding = 0;
@@ -86,9 +83,6 @@ var getCompanyData = {
 
             // console.log(totalFunding);
 
-            //put stuff in bubble
-            bubbleInBubbleChart.push(data[i].name, data[i].id, data[i].twitter_username, data[i].total_amount);
-
             // populates global variable dataset array
             // for dots
             dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
@@ -99,32 +93,22 @@ var getCompanyData = {
 
             if (category === "fashion") {
                 categories.fashion += 1;
-                bubbleInBubbleChart.push("Other");
             } else if ((category === "web") || (category === "search") || (category === "mobile") || (category === "software") || (category === "hardware") || (category === "games_video") || (category === "cleantech") || (category === "social") || (category === "messaging") || (category === "photo_video")) {
                 categories.tech += 1;
-                bubbleInBubbleChart.push("Tech");
             } else if ((category === "advertising") || (category === "public_relations")) {
                 categories.advertising += 1;
-                bubbleInBubbleChart.push("Advertising");
             } else if (category === "ecommerce") {
                 categories.ecommerce += 1;
-                bubbleInBubbleChart.push("Ecommerce");
             } else if (category === "finance") {
                 categories.finance += 1;
-                bubbleInBubbleChart.push("Other");
             } else if (category === "education") {
                 categories.education += 1;
-                bubbleInBubbleChart.push("Education");
             } else if (category === "enterprise") {
                 categories.enterprise += 1;
-                bubbleInBubbleChart.push("Other");
             } else {
                 categories.other += 1;
-                bubbleInBubbleChart.push("Other");
             }
 
-            forBubbleChart.push(bubbleInBubbleChart);
-            bubbleInBubbleChart = [];
         }
 
         // calls d3PlotPoints function to create points and description divs using global variable dataset
