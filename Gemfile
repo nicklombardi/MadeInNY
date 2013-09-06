@@ -17,7 +17,7 @@ group :production do
   gem 'memcachier'
   gem 'rack-cache'
   gem 'newrelic_rpm'
-  # gem 'rack-google-analytics'
+  gem 'rack-google-analytics'
   gem "rack-timeout"
 end
 
