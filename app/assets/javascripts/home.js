@@ -74,15 +74,15 @@ var getCompanyData = {
             } else if (thousandOrMillion === "M") {
                 totalFunding = parseFloat(fundingArray[1]);
             } else if (fundingArray[1] === "0") {
-                totalFunding = 10;
+                totalFunding = 1;
                 numberOfCompaniesWithoutFunding += 1;
             }
 
-            if (totalFunding < 10) {
-                totalFunding = totalFunding + 10;
-            } else if (totalFunding > 70) {
-                totalFunding = 70;
-            }
+            // if (totalFunding < 10) {
+            //     totalFunding = totalFunding + 10;
+            // } else if (totalFunding > 70) {
+            //     totalFunding = 70;
+            // }
 
             // console.log(totalFunding);
 
@@ -147,6 +147,10 @@ var getCompanyData = {
             .attr("width", w)
             .attr("height", h);
 
+        var size = d3.scale.linear()
+            .domain([1, 300])
+            .range([5, 30]);
+
         svg.selectAll("dot")
             .data(dataset)
             .enter()
@@ -157,8 +161,11 @@ var getCompanyData = {
                 return "translate(" + projection([d[0], d[1]]) + ")";
             })
             .attr("r", function(d) {
-                return (d[2]/4);
+                return size(d[2]);
             })
+            // .attr("r", function(d) {
+            //     return size(d[2]/4);
+            // })
             .style("fill", function(d) {
                 return color(d[2]);
             });
@@ -177,7 +184,7 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
-                .attr("r", (d[2]/2))
+                .attr("r", size(d[2]*2))
                 .duration(500);
 
             div.html("<h4>" + d[3] + "</h4>" +  "<hr>" + d[4] )
@@ -194,7 +201,7 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
-                .attr("r", (d[2]/4))
+                .attr("r", size(d[2]))
                 .duration(1000);
             div
                 .transition()
