@@ -1,12 +1,12 @@
 .data {
   position: relative;
-  z-index: 0;
+  z-index: -1;
   margin-top: -970px;
 }
 
 .d3-object {
   postion: absolute;
-  z-index: 20;
+  z-index: 0;
 }
 
 .dot {
@@ -27,9 +27,10 @@
 }
 
 #main-footer {
-  postion: relative;
+  postion: absolute;
   margin-left: 75px;
-  margin-top: 90%;
+  margin-top: 80%;
+  margin-bottom: 10%;
 }
 
 @media (min-width: 990px) {
