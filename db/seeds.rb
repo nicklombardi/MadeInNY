@@ -56,6 +56,34 @@ warby_parker.longitude = -74.004142
 warby_parker.latitude = 40.725933
 warby_parker.save
 
+stamped = Company.find(160)
+stamped.twitter_username = "stampedapp"
+stamped.save
+
+appaddictive = Company.find(7)
+appaddictive.twitter_username = "appaddictive"
+appaddictive.save
+
+dotbox = Company.find(47)
+dotbox.twitter_username = "dotboxNYC"
+dotbox.save
+
+jetsetter = Company.find(83)
+jetsetter.twitter_username = "Jetsetterdotcom"
+jetsetter.save
+
+kaptur = Company.find(87)
+kaptur.twitter_username = "KapturIt"
+kaptur.save
+
+panelfly = Company.find(119)
+panelfly.twitter_username = "Panelfly"
+panelfly.save
+
+liquid = Company.find(158)
+liquid.twitter_username = "spinlister"
+liquid.save
+
 Company.create([
   {name: "Taboola", homepage_url: "http://www.taboola.com", twitter_username: "taboola", description: "Content you may like", total_money_raised: "$40M", latitude: 40.740998, longitude: -73.991718},
   {name: "Spotify", homepage_url: "http://www.spotify.com", twitter_username: "spotify", description: "Music for every moment", total_money_raised: "$288M", latitude: 40.741781, longitude: -74.004501},
