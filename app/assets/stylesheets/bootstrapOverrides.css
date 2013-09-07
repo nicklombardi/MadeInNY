@@ -6,12 +6,14 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 200;
-  background-image: none, url(/assets/map.svg);
-  background-height: 1500px;
-  background-position: 0% 0%;
-  background-repeat: no-repeat;
   background-color: #B8DBFC;
   position: absolute;
+}
+
+body,.svg{
+  background-image: url(/assets/map.svg);
+  background-height: 1500px;
+  background-repeat: no-repeat;
 }
 
 hr {
