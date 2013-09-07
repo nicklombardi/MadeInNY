@@ -6939,6 +6939,12 @@ hr {
   .col-md-6 {
     width: 647px;
   }
+#main-footer {
+  postion: fixed;
+  margin-left: 75px;
+  margin-top: 95%;
+  margin-bottom: 5%;
+}
 }
 
 
@@ -6953,15 +6959,15 @@ hr {
     width: 108%;
     margin-bottom: 100px
   }
-}
-
-
-#main-footer {
+  #main-footer {
   postion: fixed;
-  margin-left: 75px;
-  margin-top: 95%;
+  margin-left: 30px;
+  margin-top: 0%;
   margin-bottom: 5%;
 }
+}
+
+
 /* HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================
  */
