@@ -6830,7 +6830,7 @@ td.visible-print {
 }
 html {
   height: 100%;
-  width: 100%;
+  width: 1500px;
 }
 
 body {
@@ -6842,7 +6842,7 @@ body {
 }
 
 .svg {
-  background-height: 1500px;
+  /*background-height: 1500px;*/
   background-repeat: no-repeat;
   position: absolute;
   z-index: -1;
