@@ -6836,10 +6836,10 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 200;
-  background-image: url(/assets/map.svg);
+  background-image: url(/assets/map.jpg);
   background-height: 1500px;
   background-repeat: no-repeat;
-  /*background-color: #B8DBFC;*/
+  background-color: #B8DBFC;
   position: absolute;
 }
 
@@ -6946,21 +6946,6 @@ hr {
 
 
 @media (max-width: 990px) {
-/*  html {
-    height: 100%;
-    width: 100%;
-  }
-*/
-  body {
-    background-image: url(/assets/map.jpg);
-    background-height: 1500px;
-    background-width: 2000px;
-    background-repeat: no-repeat;
-    background-color: #B8DBFC;
-    height: 100%;
-    width: 100%;
-  }
-
  .data {
   position: relative;
   z-index: 0;

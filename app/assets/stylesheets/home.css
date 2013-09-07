@@ -41,21 +41,6 @@
 
 
 @media (max-width: 990px) {
-/*  html {
-    height: 100%;
-    width: 100%;
-  }
-*/
-  body {
-    background-image: url(/assets/map.jpg);
-    background-height: 1500px;
-    background-width: 2000px;
-    background-repeat: no-repeat;
-    background-color: #B8DBFC;
-    height: 100%;
-    width: 100%;
-  }
-
  .data {
   position: relative;
   z-index: 0;
