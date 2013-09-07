@@ -41,6 +41,12 @@
 
 
 @media (max-width: 990px) {
+body {
+  background-image: url(/assets/map.png);
+  background-height: 1500px;
+  background-repeat: no-repeat;
+}
+
  .data {
   position: relative;
   z-index: 0;
