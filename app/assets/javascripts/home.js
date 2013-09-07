@@ -48,6 +48,8 @@ var getCompanyData = {
             console.log(data);
             companiesObject = data;
 
+            // sorts database descendingly by twitter users
+            // correlates well enough to funding to have smaller circles on top
             function compare(a,b) {
               if (a.followers > b.followers)
                  return -1;
@@ -160,7 +162,7 @@ var getCompanyData = {
 
         var size = d3.scale.linear()
             .domain([1, 300])
-            .range([5, 30]);
+            .range([5, 40]);
 
         svg.selectAll("dot")
             .data(dataset)
@@ -174,11 +176,11 @@ var getCompanyData = {
             .attr("r", function(d) {
                 return size(d[2]);
             })
-            // .attr("r", function(d) {
-            //     return size(d[2]/4);
-            // })
             .style("fill", function(d) {
                 return color(d[2]);
+            })
+            .attr("stroke-width", 1).attr("stroke", function(d) {
+              return d3.rgb(color(d[2])).brighter();
             });
 
         var div = d3.select(".d3-object").append("div")
@@ -196,6 +198,9 @@ var getCompanyData = {
                 .transition()
                 .ease("elastic")
                 .attr("r", size(d[2]*2))
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).darker();
+                })
                 .duration(500);
 
             div.html("<h4>" + d[3] + "</h4>" +  "<hr>" + d[4] )
@@ -212,6 +217,9 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).brighter();
+                })
                 .attr("r", size(d[2]))
                 .duration(1000);
             div
@@ -323,7 +331,7 @@ var getCompanyData = {
             .data(donut(data.pct));
         arcs.enter().append("svg:path")
             .attr("stroke", "white")
-            .attr("stroke-width", 0.5)
+            .attr("stroke-width", 1)
             .attr("fill", function(d, i) {return color(i);})
             .attr("d", arc)
             .each(function(d) {this._current = d});

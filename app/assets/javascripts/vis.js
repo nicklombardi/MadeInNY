@@ -67,7 +67,7 @@ BubbleChart = (function() {
     max_amount = d3.max(this.data, function(d) {
       return parseInt(d.total_amount);
     });
-    this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
+    this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 220]).range([5, 60]);
     this.create_nodes();
     this.create_vis();
   }
@@ -104,7 +104,7 @@ BubbleChart = (function() {
     that = this;
     this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d) {
       return _this.fill_color(d.value);
-    }).attr("stroke-width", 2).attr("stroke", function(d) {
+    }).attr("stroke-width", 1).attr("stroke", function(d) {
       return d3.rgb(_this.fill_color(d.value)).brighter();
     }).attr("id", function(d) {
       return "bubble_" + d.id;
