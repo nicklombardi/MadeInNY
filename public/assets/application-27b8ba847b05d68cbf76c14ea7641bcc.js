@@ -11010,6 +11010,17 @@ var getCompanyData = {
             console.log("got data from companies database");
             console.log(data);
             companiesObject = data;
+
+            function compare(a,b) {
+              if (a.followers > b.followers)
+                 return -1;
+              if (a.followers < b.followers)
+                return 1;
+              return 0;
+            }
+
+            data.sort(compare);
+
             // calls prepDataForD3 function
             that.prepDataForD3(data);
             that.getSiliconData();
@@ -11054,7 +11065,7 @@ var getCompanyData = {
 
             // populates global variable dataset array
             // for dots
-            dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
+            dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description, data[i].followers]);
 
             // this keeps track of how many companies belong to a category
             category = data[i].category_code;
