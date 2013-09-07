@@ -6952,10 +6952,13 @@ hr {
   }
 */
   body {
-    background-image: url(/assets/map.png);
+    background-image: url(/assets/map.jpg);
     background-height: 1500px;
-    background-width: 1995px;
+    background-width: 2000px;
     background-repeat: no-repeat;
+    background-color: #B8DBFC;
+    height: 100%;
+    width: 100%;
   }
 
  .data {
