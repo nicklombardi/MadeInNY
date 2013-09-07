@@ -164,6 +164,10 @@ var getCompanyData = {
             .domain([1, 300])
             .range([5, 40]);
 
+        var bigger = d3.scale.linear()
+            .domain([1, 300])
+            .range([20, 60]);
+
         svg.selectAll("dot")
             .data(dataset)
             .enter()
@@ -197,7 +201,7 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
-                .attr("r", size(d[2]*2))
+                .attr("r", bigger(d[2]))
                 .attr("stroke-width", 1).attr("stroke", function(d) {
                   return d3.rgb(color(d[2])).darker();
                 })
