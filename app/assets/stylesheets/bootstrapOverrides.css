@@ -6,7 +6,7 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 200;
-  background-image: url(https://s3.amazonaws.com/made-in-ny/static-assets/map.svg);
+  background-image: none, url(/assets/map.svg);
   background-height: 1500px;
   background-repeat: no-repeat;
   background-color: #B8DBFC;
