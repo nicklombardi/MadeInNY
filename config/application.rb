@@ -31,6 +31,6 @@ module MadeInNY
 
     # config.assets.paths << Rails.root.join("app", "assets", "ico")
 
-    # config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-43048107-1'
+    config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-43839146-1'
   end
 end

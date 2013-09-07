@@ -44,6 +44,19 @@ var getCompanyData = {
             console.log("got data from companies database");
             console.log(data);
             companiesObject = data;
+
+            // sorts database descendingly by twitter users
+            // correlates well enough to funding to have smaller circles on top
+            function compare(a,b) {
+              if (a.followers > b.followers)
+                 return -1;
+              if (a.followers < b.followers)
+                return 1;
+              return 0;
+            }
+
+            data.sort(compare);
+
             // calls prepDataForD3 function
             that.prepDataForD3(data);
             that.getSiliconData();
@@ -71,21 +84,21 @@ var getCompanyData = {
             } else if (thousandOrMillion === "M") {
                 totalFunding = parseFloat(fundingArray[1]);
             } else if (fundingArray[1] === "0") {
-                totalFunding = 10;
+                totalFunding = 1;
                 numberOfCompaniesWithoutFunding += 1;
             }
 
-            if (totalFunding < 10) {
-                totalFunding = totalFunding + 10;
-            } else if (totalFunding > 70) {
-                totalFunding = 70;
-            }
+            // if (totalFunding < 10) {
+            //     totalFunding = totalFunding + 10;
+            // } else if (totalFunding > 70) {
+            //     totalFunding = 70;
+            // }
 
             // console.log(totalFunding);
 
             // populates global variable dataset array
             // for dots
-            dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description]);
+            dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description, data[i].followers]);
 
             // this keeps track of how many companies belong to a category
             category = data[i].category_code;
@@ -131,6 +144,14 @@ var getCompanyData = {
             .attr("width", w)
             .attr("height", h);
 
+        var size = d3.scale.linear()
+            .domain([1, 300])
+            .range([5, 40]);
+
+        var bigger = d3.scale.linear()
+            .domain([1, 300])
+            .range([20, 60]);
+
         svg.selectAll("dot")
             .data(dataset)
             .enter()
@@ -141,10 +162,13 @@ var getCompanyData = {
                 return "translate(" + projection([d[0], d[1]]) + ")";
             })
             .attr("r", function(d) {
-                return (d[2]/4);
+                return size(d[2]);
             })
             .style("fill", function(d) {
                 return color(d[2]);
+            })
+            .attr("stroke-width", 1).attr("stroke", function(d) {
+              return d3.rgb(color(d[2])).brighter();
             });
 
         var div = d3.select(".d3-object").append("div")
@@ -161,7 +185,10 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
-                .attr("r", (d[2]/2))
+                .attr("r", bigger(d[2]))
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).darker();
+                })
                 .duration(500);
 
             div.html("<h4>" + d[3] + "</h4>" +  "<hr>" + d[4] )
@@ -178,7 +205,10 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
-                .attr("r", (d[2]/4))
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).brighter();
+                })
+                .attr("r", size(d[2]))
                 .duration(1000);
             div
                 .transition()
@@ -289,7 +319,7 @@ var getCompanyData = {
             .data(donut(data.pct));
         arcs.enter().append("svg:path")
             .attr("stroke", "white")
-            .attr("stroke-width", 0.5)
+            .attr("stroke-width", 1)
             .attr("fill", function(d, i) {return color(i);})
             .attr("d", arc)
             .each(function(d) {this._current = d});

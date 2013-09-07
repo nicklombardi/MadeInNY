@@ -6836,12 +6836,14 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 200;
-  background-image: url(/assets/map.svg);
+  background-image: url(/assets/map2.svg);
   background-height: 1500px;
   background-repeat: no-repeat;
   background-color: #B8DBFC;
   position: absolute;
 }
+
+body
 
 hr {
   margin-top:5px;
@@ -6860,7 +6862,7 @@ hr {
 
 .navbar-brand {
   float: left;
-  padding-left: 40px;
+  padding-left: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
   margin-right: 7.5px;
@@ -6897,24 +6899,28 @@ hr {
   border-bottom-color: #999999;
 }
 
-
-
+.dropup .dropdown-menu,
+.navbar-fixed-bottom .dropdown .dropdown-menu {
+  margin-top: 80%;
+  bottom: 100%;
+  margin-bottom: 1px;
+}
 
 
 .data {
   position: relative;
-  z-index: 0;
+  z-index: 1;
   margin-top: -970px;
 }
 
 .d3-object {
   postion: absolute;
-  z-index: 20;
+  z-index: 0;
 }
 
-.dot {
+/*.dot {
   stroke: #ffffff;
-}
+}*/
 
 #donut {
   width: 320px;
@@ -6929,15 +6935,16 @@ hr {
   fill: #fff;
 }
 
-#main-footer {
-  postion: relative;
-  margin-top: 90%;
-}
-
 @media (min-width: 990px) {
   .col-md-6 {
-    width: 70%;
+    width: 647px;
   }
+#main-footer {
+  postion: fixed;
+  margin-left: 75px;
+  margin-top: 95%;
+  margin-bottom: 5%;
+}
 }
 
 
@@ -6946,11 +6953,20 @@ hr {
   position: relative;
   z-index: 0;
   margin-top: -350px;
+  width: 600px;
   }
   .col-md-6 {
-    width: 70%;
+    width: 108%;
+    margin-bottom: 100px
   }
+  #main-footer {
+  postion: fixed;
+  margin-left: 30px;
+  margin-top: 0%;
+  margin-bottom: 5%;
 }
+}
+
 
 /* HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================

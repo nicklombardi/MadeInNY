@@ -1,17 +1,17 @@
 .data {
   position: relative;
-  z-index: 0;
+  z-index: 1;
   margin-top: -970px;
 }
 
 .d3-object {
   postion: absolute;
-  z-index: 20;
+  z-index: 0;
 }
 
-.dot {
+/*.dot {
   stroke: #ffffff;
-}
+}*/
 
 #donut {
   width: 320px;
@@ -26,16 +26,16 @@
   fill: #fff;
 }
 
-#main-footer {
-  postion: relative;
-  margin-left: 75px;
-  margin-top: 90%;
-}
-
 @media (min-width: 990px) {
   .col-md-6 {
-    width: 70%;
+    width: 647px;
   }
+#main-footer {
+  postion: fixed;
+  margin-left: 75px;
+  margin-top: 95%;
+  margin-bottom: 5%;
+}
 }
 
 
@@ -44,9 +44,18 @@
   position: relative;
   z-index: 0;
   margin-top: -350px;
+  width: 600px;
   }
   .col-md-6 {
-    width: 90%;
+    width: 108%;
+    margin-bottom: 100px
   }
+  #main-footer {
+  postion: fixed;
+  margin-left: 30px;
+  margin-top: 0%;
+  margin-bottom: 5%;
 }
+}
+
 
