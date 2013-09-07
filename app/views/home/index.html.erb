@@ -1,5 +1,3 @@
-<%= link_to(image_tag("/assets/map.svg", :class => "svg", :size => "1500x v", :alt => "map"), "/") %>
-
 <div class="container">
 
 <div class="d3-object">
@@ -32,8 +30,19 @@
             <a href="#sv" id="sv" type="button" class="btn btn-default">Silicon Valley</a>
           </div>
         </div>
+           <!--  <div class="btn-group" style="float:right; margin-top:-6px;">
+              <button type="button" class="btn btn-default">Location</button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#ny">New York</a></li>
+                <li><a href="#sv">Silicon Valley</a></li>
+              </ul>
+            </div>
+          </div> -->
         <div class="panel-body" style="width: 100%; text-align: center;">
-          <div id="donut" style="display: inline-block; margin-bottom:40px"></div>
+          <div id="donut" style="display: inline-block;"></div>
         </div>
       </div>
 

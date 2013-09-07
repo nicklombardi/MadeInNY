@@ -6830,22 +6830,17 @@ td.visible-print {
 }
 html {
   height: 100%;
-  width: 1500px;
+  width: 100%;
 }
 
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 200;
-  background-color: #B8DBFC;
-  position: absolute;
-
-}
-
-.svg {
-  /*background-height: 1500px;*/
+  background-image: url(/assets/map.svg);
+  background-height: 1500px;
   background-repeat: no-repeat;
+  /*background-color: #B8DBFC;*/
   position: absolute;
-  z-index: -1;
 }
 
 hr {
