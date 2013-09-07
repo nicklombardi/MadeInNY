@@ -41,14 +41,15 @@
 
 
 @media (max-width: 990px) {
-  html {
+/*  html {
     height: 100%;
     width: 100%;
   }
-
+*/
   body {
     background-image: url(/assets/map.png);
     background-height: 1500px;
+    background-width: 1995px;
     background-repeat: no-repeat;
   }
 
