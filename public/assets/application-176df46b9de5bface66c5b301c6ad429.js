@@ -10361,7 +10361,7 @@ BubbleChart = (function() {
     max_amount = d3.max(this.data, function(d) {
       return parseInt(d.total_amount);
     });
-    this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
+    this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 220]).range([5, 60]);
     this.create_nodes();
     this.create_vis();
   }
@@ -10398,7 +10398,7 @@ BubbleChart = (function() {
     that = this;
     this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d) {
       return _this.fill_color(d.value);
-    }).attr("stroke-width", 2).attr("stroke", function(d) {
+    }).attr("stroke-width", 1).attr("stroke", function(d) {
       return d3.rgb(_this.fill_color(d.value)).brighter();
     }).attr("id", function(d) {
       return "bubble_" + d.id;
@@ -11011,6 +11011,8 @@ var getCompanyData = {
             console.log(data);
             companiesObject = data;
 
+            // sorts database descendingly by twitter users
+            // correlates well enough to funding to have smaller circles on top
             function compare(a,b) {
               if (a.followers > b.followers)
                  return -1;
@@ -11123,7 +11125,11 @@ var getCompanyData = {
 
         var size = d3.scale.linear()
             .domain([1, 300])
-            .range([5, 30]);
+            .range([5, 40]);
+
+        var bigger = d3.scale.linear()
+            .domain([1, 300])
+            .range([20, 60]);
 
         svg.selectAll("dot")
             .data(dataset)
@@ -11137,11 +11143,11 @@ var getCompanyData = {
             .attr("r", function(d) {
                 return size(d[2]);
             })
-            // .attr("r", function(d) {
-            //     return size(d[2]/4);
-            // })
             .style("fill", function(d) {
                 return color(d[2]);
+            })
+            .attr("stroke-width", 1).attr("stroke", function(d) {
+              return d3.rgb(color(d[2])).brighter();
             });
 
         var div = d3.select(".d3-object").append("div")
@@ -11158,7 +11164,10 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
-                .attr("r", size(d[2]*2))
+                .attr("r", bigger(d[2]))
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).darker();
+                })
                 .duration(500);
 
             div.html("<h4>" + d[3] + "</h4>" +  "<hr>" + d[4] )
@@ -11175,6 +11184,9 @@ var getCompanyData = {
             d3.select(this)
                 .transition()
                 .ease("elastic")
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).brighter();
+                })
                 .attr("r", size(d[2]))
                 .duration(1000);
             div
@@ -11286,7 +11298,7 @@ var getCompanyData = {
             .data(donut(data.pct));
         arcs.enter().append("svg:path")
             .attr("stroke", "white")
-            .attr("stroke-width", 0.5)
+            .attr("stroke-width", 1)
             .attr("fill", function(d, i) {return color(i);})
             .attr("d", arc)
             .each(function(d) {this._current = d});
