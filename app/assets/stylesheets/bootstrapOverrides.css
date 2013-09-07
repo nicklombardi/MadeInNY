@@ -69,7 +69,11 @@ hr {
   border-bottom-color: #999999;
 }
 
-
-
+.dropup .dropdown-menu,
+.navbar-fixed-bottom .dropdown .dropdown-menu {
+  margin-top: 80%;
+  bottom: 100%;
+  margin-bottom: 1px;
+}
 
 

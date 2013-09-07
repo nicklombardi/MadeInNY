@@ -6899,8 +6899,12 @@ hr {
   border-bottom-color: #999999;
 }
 
-
-
+.dropup .dropdown-menu,
+.navbar-fixed-bottom .dropdown .dropdown-menu {
+  margin-top: 80%;
+  bottom: 100%;
+  margin-bottom: 1px;
+}
 
 
 .data {
@@ -6931,16 +6935,9 @@ hr {
   fill: #fff;
 }
 
-#main-footer {
-  postion: absolute;
-  margin-left: 75px;
-  margin-top: 80%;
-  margin-bottom: 10%;
-}
-
 @media (min-width: 990px) {
   .col-md-6 {
-    width: 70%;
+    width: 647px;
   }
 }
 
@@ -6958,6 +6955,13 @@ hr {
   }
 }
 
+
+#main-footer {
+  postion: fixed;
+  margin-left: 75px;
+  margin-top: 95%;
+  margin-bottom: 5%;
+}
 /* HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================
  */
