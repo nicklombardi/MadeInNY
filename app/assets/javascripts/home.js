@@ -233,7 +233,7 @@ var getCompanyData = {
                 .style("opacity", 1e-6)
                 .style("visibility", "hidden")
                 .duration(1000);
-        }
+    }
 
         function mousedown(d) {
             d3.select(this)
