@@ -39,7 +39,7 @@ var donutChart = {
                 return color(d[2]);
             })
             .attr("stroke-width", 1).attr("stroke", function(d) {
-              return d3.rgb(color(d[2])).brighter();
+                return d3.rgb(color(d[2])).brighter();
             });
 
         var div = d3.select(".d3-object").append("div")
@@ -68,15 +68,14 @@ var donutChart = {
                 .ease("elastic")
                 .attr("r", bigger(d[2]))
                 .attr("stroke-width", 1).attr("stroke", function(d) {
-                  return d3.rgb(color(d[2])).darker();
+                    return d3.rgb(color(d[2])).darker();
                 })
                 .duration(500);
 
             div.html("<h4>" + d[3] + "</h4>" +  "<hr><h6>" + d[4] +"</h6>")
                 .style("left", (d3.event.pageX + 9) + "px")
-                .style("top", (d3.event.pageY - 43) + "px")
-                div
-                .transition()
+                .style("top", (d3.event.pageY - 43) + "px");
+            div.transition()
                 .style("visibility", "visible")
                 .style("opacity", 1)
                 .duration(500);
@@ -87,12 +86,11 @@ var donutChart = {
                 .transition()
                 .ease("elastic")
                 .attr("stroke-width", 1).attr("stroke", function(d) {
-                  return d3.rgb(color(d[2])).brighter();
+                    return d3.rgb(color(d[2])).brighter();
                 })
                 .attr("r", size(d[2]))
                 .duration(1000);
-            div
-                .transition()
+            div.transition()
                 .style("opacity", 1e-6)
                 .style("visibility", "hidden")
                 .duration(1000);
@@ -107,17 +105,15 @@ var donutChart = {
                   return d3.rgb(color(d[2])).darker();
                 })
                 .duration(500);
-                div
-                .transition()
+            div.transition()
                 .style("opacity", 1e-6)
                 .style("visibility", "hidden")
                 .duration(1000);
 
             popup.html("<h4>" + d[3] + "</h4>" +  "<hr><h6>" + d[4] + "</h6>" + d[7] + " " + d[8] + "<br>" + "New York, NY " + d[11] + "<br><a href=" + d[6] + " target=/'blank/'>" + d[6] + "</a>")
                 .style("left", (d3.event.pageX + 19) + "px")
-                .style("top", (d3.event.pageY - 43) + "px")
-                popup
-                .transition()
+                .style("top", (d3.event.pageY - 43) + "px");
+            popup.transition()
                 .style("visibility", "visible")
                 .style("opacity", 1)
                 .duration(500);
@@ -227,18 +223,26 @@ var donutChart = {
         arcs.enter().append("svg:path")
             .attr("stroke", "white")
             .attr("stroke-width", 1)
-            .attr("fill", function(d, i) {return color(i);})
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
             .attr("d", arc)
-            .each(function(d) {this._current = d});
+            .each(function(d) {
+                this._current = d;
+            });
 
         // DRAW SLICE LABELS
         var sliceLabel = label_group.selectAll("text")
             .data(donut(data.pct));
         sliceLabel.enter().append("svg:text")
             .attr("class", "arcLabel")
-            .attr("transform", function(d) {return "translate(" + arc.centroid(d) + ")"; })
+            .attr("transform", function(d) {
+                return "translate(" + arc.centroid(d) + ")";
+            })
             .attr("text-anchor", "middle")
-            .text(function(d, i) {return labels[i]; });
+            .text(function(d, i) {
+                return labels[i];
+            });
 
         // Store the currently-displayed angles in this._current.
         // Then, interpolate from this._current to the new angles.
@@ -259,8 +263,12 @@ var donutChart = {
 
             sliceLabel.data(donut(data.pct));
             sliceLabel.transition().ease("elastic").duration(dur)
-                .attr("transform", function(d) {return "translate(" + arc.centroid(d) + ")"; })
-                .style("fill-opacity", function(d) {return d.value==0 ? 1e-6 : 1;});
+                .attr("transform", function(d) {
+                    return "translate(" + arc.centroid(d) + ")";
+                })
+                .style("fill-opacity", function(d) {
+                    return d.value==0 ? 1e-6 : 1;
+                });
 
             pieLabel.text(data.label);
         }
@@ -270,7 +278,7 @@ var donutChart = {
             updateChart(this.href.slice(this.href.indexOf('#') + 1));
         });
     }
-}
+};
 
 $(document).ready(function() {
     $('#view_selection a').click(function() {
