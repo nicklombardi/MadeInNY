@@ -11054,20 +11054,12 @@ var getCompanyData = {
                 numberOfCompaniesWithoutFunding += 1;
             }
 
-            // if (totalFunding < 10) {
-            //     totalFunding = totalFunding + 10;
-            // } else if (totalFunding > 70) {
-            //     totalFunding = 70;
-            // }
-
-            // console.log(totalFunding);
-
             //put stuff in bubble
             bubbleInBubbleChart.push(data[i].name, data[i].id, data[i].twitter_username, data[i].total_amount);
 
             // populates global variable dataset array
             // for dots
-            dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description, data[i].followers]);
+            dataset.push([data[i].longitude, data[i].latitude, totalFunding, data[i].name, data[i].description, data[i].followers, data[i].homepage_url, data[i].address1, data[i].address2, data[i].city, data[i].state_code, data[i].zip_code]);
 
             // this keeps track of how many companies belong to a category
             category = data[i].category_code;
@@ -11160,6 +11152,16 @@ var getCompanyData = {
             .style("border", "solid 1px #DBDCDE")
             .style("opacity", 0);
 
+        var popup = d3.select(".d3-object").append("div")
+            .style("position", "absolute")
+            .style("text-align", "left")
+            .style("background", "white")
+            .style("border-radius", "4px")
+            .style("padding", "10px")
+            .style("padding-top", "5px")
+            .style("border", "solid 1px #B8DBFC")
+            .style("opacity", 0);
+
         function mouseover(d) {
             d3.select(this)
                 .transition()
@@ -11170,7 +11172,7 @@ var getCompanyData = {
                 })
                 .duration(500);
 
-            div.html("<h4>" + d[3] + "</h4>" +  "<hr>" + d[4] )
+            div.html("<h4>" + d[3] + "</h4>" +  "<hr><h6>" + d[4] +"</h6>")
                 .style("left", (d3.event.pageX + 9) + "px")
                 .style("top", (d3.event.pageY - 43) + "px")
                 div
@@ -11196,9 +11198,35 @@ var getCompanyData = {
                 .duration(1000);
         }
 
+        function mousedown(d) {
+            d3.select(this)
+                .transition()
+                .ease("elastic")
+                .attr("r", bigger(d[2]*1.4))
+                .attr("stroke-width", 1).attr("stroke", function(d) {
+                  return d3.rgb(color(d[2])).darker();
+                })
+                .duration(500);
+                div
+                .transition()
+                .style("opacity", 1e-6)
+                .style("visibility", "hidden")
+                .duration(1000);
+
+            popup.html("<h4>" + d[3] + "</h4>" +  "<hr><h6>" + d[4] + "</h6>" + d[7] + " " + d[8] + "<br>" + "New York, NY " + d[11] + "<br><a href=" + d[6] + " target=/'blank/'>" + d[6] + "</a>")
+                .style("left", (d3.event.pageX + 19) + "px")
+                .style("top", (d3.event.pageY - 43) + "px")
+                popup
+                .transition()
+                .style("visibility", "visible")
+                .style("opacity", 1)
+                .duration(500);
+        }
+
         d3.selectAll(".dot")
             .on("mouseover", mouseover)
-            .on("mouseout", mouseout);
+            .on("mouseout", mouseout)
+            .on("mousedown", mousedown);
     },
     getSiliconData: function() {
         var that = this;
