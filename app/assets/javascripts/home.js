@@ -121,7 +121,7 @@ var getCompanyData = {
 
         // calls d3PlotPoints function to create points and description divs using global variable dataset
         console.log("creating dots all over the place");
-        donutChart.d3PlotPoints(dataset);
+        makeMap.d3PlotPoints(dataset);
     }
 };
 
