@@ -154,7 +154,7 @@ var getCompanyData = {
 
         var size = d3.scale.linear()
             .domain([1, 300])
-            .range([5, 40]);
+            .range([4, 40]);
 
         var bigger = d3.scale.linear()
             .domain([1, 300])
@@ -250,7 +250,7 @@ var getCompanyData = {
                 .style("visibility", "hidden")
                 .duration(1000);
 
-            popup.html("<h4>" + d[3] + "</h4>" +  "<hr><h6>" + d[4] + "</h6>" + d[7] + " " + d[8] + "<br>" + "New York, NY " + d[11] + "<br><a href=" + d[6] + " target=/'blank/'>" + d[6] + "</a>")
+            popup.html("<h4>" + d[3] + "</h4>" +  "<hr><h6>" + d[4] + "</h6>" + d[7] + " " + d[8] + "<br>" + "New York, NY " + d[11] + "<br><a href=http://" + d[6] + " target=/'blank/'>" + d[6] + "</a>")
                 .style("left", (d3.event.pageX + 19) + "px")
                 .style("top", (d3.event.pageY - 43) + "px")
                 popup
