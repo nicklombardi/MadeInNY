@@ -4,12 +4,14 @@
 $(document).ready(function() {
 
 
-  $(".welcome").mouseenter(function(){
-    $(".welcome").fadeTo("fast",1);
+  $(".glyphicon-cog").mouseenter(function(){
+    console.log('mouseenter');
+    $(".map-info").removeClass('hidden');
   });
 
-  $(".welcome").mouseleave(function(){
-    $(".welcome").fadeTo("fast",.8);
+  $(".glyphicon-cog").mouseleave(function(){
+    console.log('mouseout');
+  $(".map-info").addClass('hidden');
   });
 
 });
