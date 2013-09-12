@@ -46,6 +46,7 @@ hr {
   margin-bottom: 0;
   background-color: transparent;
   border: none;
+  z-index: 0;
 /*  border-bottom: 1px solid #FFFFFF;
   opacity: 1;*/
 }
