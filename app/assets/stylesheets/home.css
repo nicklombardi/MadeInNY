@@ -2,6 +2,7 @@
   position: relative;
   z-index: 1;
   margin-top: -955px;
+  margin-bottom: -955px;
 }
 
 .d3-object {
@@ -30,12 +31,12 @@
   .col-md-6 {
     width: 647px;
   }
-#main-footer {
+  #main-footer {
   postion: fixed;
   margin-left: 75px;
   margin-top: 95%;
   margin-bottom: 5%;
-}
+  }
 }
 
 
@@ -59,3 +60,4 @@
 }
 
 
+html.chrome div#main-footer { margin-top: 10px; }
