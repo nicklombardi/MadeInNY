@@ -10292,249 +10292,260 @@ return this.tween("attr."+n,u.local?r:e)},Yc.style=function(n,t,e){function r(){
 (function(){function a(a){var b=a.source,d=a.target,e=c(b,d),f=[b];while(b!==e)b=b.parent,f.push(b);var g=f.length;while(d!==e)f.splice(g,0,d),d=d.parent;return f}function b(a){var b=[],c=a.parent;while(c!=null)b.push(a),a=c,c=c.parent;return b.push(a),b}function c(a,c){if(a===c)return a;var d=b(a),e=b(c),f=d.pop(),g=e.pop(),h=null;while(f===g)h=f,f=d.pop(),g=e.pop();return h}function g(a){a.fixed|=2}function h(a){a!==f&&(a.fixed&=1)}function i(){j(),f.fixed&=1,e=f=null}function j(){f.px=d3.event.x,f.py=d3.event.y,e.resume()}function k(a,b,c){var d=0,e=0;a.charge=0;if(!a.leaf){var f=a.nodes,g=f.length,h=-1,i;while(++h<g){i=f[h];if(i==null)continue;k(i,b,c),a.charge+=i.charge,d+=i.charge*i.cx,e+=i.charge*i.cy}}if(a.point){a.leaf||(a.point.x+=Math.random()-.5,a.point.y+=Math.random()-.5);var j=b*c[a.point.index];a.charge+=a.pointCharge=j,d+=j*a.point.x,e+=j*a.point.y}a.cx=d/a.charge,a.cy=e/a.charge}function l(a){return 20}function m(a){return 1}function o(a){return a.x}function p(a){return a.y}function q(a,b,c){a.y0=b,a.y=c}function t(a){var b=1,c=0,d=a[0][1],e,f=a.length;for(;b<f;++b)(e=a[b][1])>d&&(c=b,d=e);return c}function u(a){return a.reduce(v,0)}function v(a,b){return a+b[1]}function w(a,b){return x(a,Math.ceil(Math.log(b.length)/Math.LN2+1))}function x(a,b){var c=-1,d=+a[0],e=(a[1]-d)/b,f=[];while(++c<=b)f[c]=e*c+d;return f}function y(a){return[d3.min(a),d3.max(a)]}function z(a,b){return d3.rebind(a,b,"sort","children","value"),a.links=D,a.nodes=function(b){return E=!0,(a.nodes=a)(b)},a}function A(a){return a.children}function B(a){return a.value}function C(a,b){return b.value-a.value}function D(a){return d3.merge(a.map(function(a){return(a.children||[]).map(function(b){return{source:a,target:b}})}))}function F(a,b){return a.value-b.value}function G(a,b){var c=a._pack_next;a._pack_next=b,b._pack_prev=a,b._pack_next=c,c._pack_prev=b}function H(a,b){a._pack_next=b,b._pack_prev=a}function I(a,b){var c=b.x-a.x,d=b.y-a.y,e=a.r+b.r;return e*e-c*c-d*d>.001}function J(a){function l(a){b=Math.min(a.x-a.r,b),c=Math.max(a.x+a.r,c),d=Math.min(a.y-a.r,d),e=Math.max(a.y+a.r,e)}var b=Infinity,c=-Infinity,d=Infinity,e=-Infinity,f=a.length,g,h,i,j,k;a.forEach(K),g=a[0],g.x=-g.r,g.y=0,l(g);if(f>1){h=a[1],h.x=h.r,h.y=0,l(h);if(f>2){i=a[2],O(g,h,i),l(i),G(g,i),g._pack_prev=i,G(i,h),h=g._pack_next;for(var m=3;m<f;m++){O(g,h,i=a[m]);var n=0,o=1,p=1;for(j=h._pack_next;j!==h;j=j._pack_next,o++)if(I(j,i)){n=1;break}if(n==1)for(k=g._pack_prev;k!==j._pack_prev;k=k._pack_prev,p++)if(I(k,i)){p<o&&(n=-1,j=k);break}n==0?(G(g,i),h=i,l(i)):n>0?(H(g,j),h=j,m--):(H(j,h),g=j,m--)}}}var q=(b+c)/2,r=(d+e)/2,s=0;for(var m=0;m<f;m++){var t=a[m];t.x-=q,t.y-=r,s=Math.max(s,t.r+Math.sqrt(t.x*t.x+t.y*t.y))}return a.forEach(L),s}function K(a){a._pack_next=a._pack_prev=a}function L(a){delete a._pack_next,delete a._pack_prev}function M(a){var b=a.children;b&&b.length?(b.forEach(M),a.r=J(b)):a.r=Math.sqrt(a.value)}function N(a,b,c,d){var e=a.children;a.x=b+=d*a.x,a.y=c+=d*a.y,a.r*=d;if(e){var f=-1,g=e.length;while(++f<g)N(e[f],b,c,d)}}function O(a,b,c){var d=a.r+c.r,e=b.x-a.x,f=b.y-a.y;if(d&&(e||f)){var g=b.r+c.r,h=Math.sqrt(e*e+f*f),i=Math.max(-1,Math.min(1,(d*d+h*h-g*g)/(2*d*h))),j=Math.acos(i),k=i*(d/=h),l=Math.sin(j)*d;c.x=a.x+k*e+l*f,c.y=a.y+k*f-l*e}else c.x=a.x+d,c.y=a.y}function P(a){return 1+d3.max(a,function(a){return a.y})}function Q(a){return a.reduce(function(a,b){return a+b.x},0)/a.length}function R(a){var b=a.children;return b&&b.length?R(b[0]):a}function S(a){var b=a.children,c;return b&&(c=b.length)?S(b[c-1]):a}function T(a,b){return a.parent==b.parent?1:2}function U(a){var b=a.children;return b&&b.length?b[0]:a._tree.thread}function V(a){var b=a.children,c;return b&&(c=b.length)?b[c-1]:a._tree.thread}function W(a,b){var c=a.children;if(c&&(e=c.length)){var d,e,f=-1;while(++f<e)b(d=W(c[f],b),a)>0&&(a=d)}return a}function X(a,b){return a.x-b.x}function Y(a,b){return b.x-a.x}function Z(a,b){return a.depth-b.depth}function $(a,b){function c(a,d){var e=a.children;if(e&&(i=e.length)){var f,g=null,h=-1,i;while(++h<i)f=e[h],c(f,g),g=f}b(a,d)}c(a,null)}function _(a){var b=0,c=0,d=a.children,e=d.length,f;while(--e>=0)f=d[e]._tree,f.prelim+=b,f.mod+=b,b+=f.shift+(c+=f.change)}function ba(a,b,c){a=a._tree,b=b._tree;var d=c/(b.number-a.number);a.change+=d,b.change-=d,b.shift+=c,b.prelim+=c,b.mod+=c}function bb(a,b,c){return a._tree.ancestor.parent==b.parent?a._tree.ancestor:c}function bc(a){return{x:a.x,y:a.y,dx:a.dx,dy:a.dy}}function bd(a,b){var c=a.x+b[3],d=a.y+b[0],e=a.dx-b[1]-b[3],f=a.dy-b[0]-b[2];return e<0&&(c+=e/2,e=0),f<0&&(d+=f/2,f=0),{x:c,y:d,dx:e,dy:f}}d3.layout={},d3.layout.bundle=function(){return function(b){var c=[],d=-1,e=b.length;while(++d<e)c.push(a(b[d]));return c}},d3.layout.chord=function(){function j(){var a={},j=[],l=d3.range(e),m=[],n,o,p,q,r;b=[],c=[],n=0,q=-1;while(++q<e){o=0,r=-1;while(++r<e)o+=d[q][r];j.push(o),m.push(d3.range(e)),n+=o}g&&l.sort(function(a,b){return g(j[a],j[b])}),h&&m.forEach(function(a,b){a.sort(function(a,c){return h(d[b][a],d[b][c])})}),n=(2*Math.PI-f*e)/n,o=0,q=-1;while(++q<e){p=o,r=-1;while(++r<e){var s=l[q],t=m[s][r],u=d[s][t],v=o,w=o+=u*n;a[s+"-"+t]={index:s,subindex:t,startAngle:v,endAngle:w,value:u}}c.push({index:s,startAngle:p,endAngle:o,value:(o-p)/n}),o+=f}q=-1;while(++q<e){r=q-1;while(++r<e){var x=a[q+"-"+r],y=a[r+"-"+q];(x.value||y.value)&&b.push(x.value<y.value?{source:y,target:x}:{source:x,target:y})}}i&&k()}function k(){b.sort(function(a,b){return i((a.source.value+a.target.value)/2,(b.source.value+b.target.value)/2)})}var a={},b,c,d,e,f=0,g,h,i;return a.matrix=function(f){return arguments.length?(e=(d=f)&&d.length,b=c=null,a):d},a.padding=function(d){return arguments.length?(f=d,b=c=null,a):f},a.sortGroups=function(d){return arguments.length?(g=d,b=c=null,a):g},a.sortSubgroups=function(c){return arguments.length?(h=c,b=null,a):h},a.sortChords=function(c){return arguments.length?(i=c,b&&k(),a):i},a.chords=function(){return b||j(),b},a.groups=function(){return c||j(),c},a},d3.layout.force=function(){function A(a){return function(b,c,d,e,f){if(b.point!==a){var g=b.cx-a.x,h=b.cy-a.y,i=1/Math.sqrt(g*g+h*h);if((e-c)*i<t){var j=b.charge*i*i;return a.px-=g*j,a.py-=h*j,!0}if(b.point&&isFinite(i)){var j=b.pointCharge*i*i;a.px-=g*j,a.py-=h*j}}return!b.charge}}function B(){var a=v.length,d=w.length,e,f,g,h,i,j,l,m,p;for(f=0;f<d;++f){g=w[f],h=g.source,i=g.target,m=i.x-h.x,p=i.y-h.y;if(j=m*m+p*p)j=n*y[f]*((j=Math.sqrt(j))-x[f])/j,m*=j,p*=j,i.x-=m*(l=h.weight/(i.weight+h.weight)),i.y-=p*l,h.x+=m*(l=1-l),h.y+=p*l}if(l=n*s){m=c[0]/2,p=c[1]/2,f=-1;if(l)while(++f<a)g=v[f],g.x+=(m-g.x)*l,g.y+=(p-g.y)*l}if(r){k(e=d3.geom.quadtree(v),n,z),f=-1;while(++f<a)(g=v[f]).fixed||e.visit(A(g))}f=-1;while(++f<a)g=v[f],g.fixed?(g.x=g.px,g.y=g.py):(g.x-=(g.px-(g.px=g.x))*o,g.y-=(g.py-(g.py=g.y))*o);return b.tick({type:"tick",alpha:n}),(n*=.99)<.005}function C(b){g(f=b),e=a}var a={},b=d3.dispatch("tick"),c=[1,1],d,n,o=.9,p=l,q=m,r=-30,s=.1,t=.8,u,v=[],w=[],x,y,z;return a.nodes=function(b){return arguments.length?(v=b,a):v},a.links=function(b){return arguments.length?(w=b,a):w},a.size=function(b){return arguments.length?(c=b,a):c},a.linkDistance=function(b){return arguments.length?(p=d3.functor(b),a):p},a.distance=a.linkDistance,a.linkStrength=function(b){return arguments.length?(q=d3.functor(b),a):q},a.friction=function(b){return arguments.length?(o=b,a):o},a.charge=function(b){return arguments.length?(r=typeof b=="function"?b:+b,a):r},a.gravity=function(b){return arguments.length?(s=b,a):s},a.theta=function(b){return arguments.length?(t=b,a):t},a.start=function(){function k(a,c){var d=l(b),e=-1,f=d.length,g;while(++e<f)if(!isNaN(g=d[e][a]))return g;return Math.random()*c}function l(){if(!i){i=[];for(d=0;d<e;++d)i[d]=[];for(d=0;d<f;++d){var a=w[d];i[a.source.index].push(a.target),i[a.target.index].push(a.source)}}return i[b]}var b,d,e=v.length,f=w.length,g=c[0],h=c[1],i,j;for(b=0;b<e;++b)(j=v[b]).index=b,j.weight=0;x=[],y=[];for(b=0;b<f;++b)j=w[b],typeof j.source=="number"&&(j.source=v[j.source]),typeof j.target=="number"&&(j.target=v[j.target]),x[b]=p.call(this,j,b),y[b]=q.call(this,j,b),++j.source.weight,++j.target.weight;for(b=0;b<e;++b)j=v[b],isNaN(j.x)&&(j.x=k("x",g)),isNaN(j.y)&&(j.y=k("y",h)),isNaN(j.px)&&(j.px=j.x),isNaN(j.py)&&(j.py=j.y);z=[];if(typeof r=="function")for(b=0;b<e;++b)z[b]=+r.call(this,v[b],b);else for(b=0;b<e;++b)z[b]=r;return a.resume()},a.resume=function(){return n=.1,d3.timer(B),a},a.stop=function(){return n=0,a},a.drag=function(){d||(d=d3.behavior.drag().origin(Object).on("dragstart",C).on("drag",j).on("dragend",i)),this.on("mouseover.force",g).on("mouseout.force",h).call(d)},d3.rebind(a,b,"on")};var e,f;d3.layout.partition=function(){function c(a,b,d,e){var f=a.children;a.x=b,a.y=a.depth*e,a.dx=d,a.dy=e;if(f&&(h=f.length)){var g=-1,h,i,j;d=a.value?d/a.value:0;while(++g<h)c(i=f[g],b,j=i.value*d,e),b+=j}}function d(a){var b=a.children,c=0;if(b&&(f=b.length)){var e=-1,f;while(++e<f)c=Math.max(c,d(b[e]))}return 1+c}function e(e,f){var g=a.call(this,e,f);return c(g[0],0,b[0],b[1]/d(g[0])),g}var a=d3.layout.hierarchy(),b=[1,1];return e.size=function(a){return arguments.length?(b=a,e):b},z(e,a)},d3.layout.pie=function(){function f(g,h){var i=g.map(function(b,c){return+a.call(f,b,c)}),j=+(typeof c=="function"?c.apply(this,arguments):c),k=((typeof e=="function"?e.apply(this,arguments):e)-c)/d3.sum(i),l=d3.range(g.length);b!=null&&l.sort(b===n?function(a,b){return i[b]-i[a]}:function(a,c){return b(g[a],g[c])});var m=l.map(function(a){return{data:g[a],value:d=i[a],startAngle:j,endAngle:j+=d*k}});return g.map(function(a,b){return m[l[b]]})}var a=Number,b=n,c=0,e=2*Math.PI;return f.value=function(b){return arguments.length?(a=b,f):a},f.sort=function(a){return arguments.length?(b=a,f):b},f.startAngle=function(a){return arguments.length?(c=a,f):c},f.endAngle=function(a){return arguments.length?(e=a,f):e},f};var n={};d3.layout.stack=function(){function g(h,i){var j=h.map(function(b,c){return a.call(g,b,c)}),k=j.map(function(a,b){return a.map(function(a,b){return[e.call(g,a,b),f.call(g,a,b)]})}),l=b.call(g,k,i);j=d3.permute(j,l),k=d3.permute(k,l);var m=c.call(g,k,i),n=j.length,o=j[0].length,p,q,r;for(q=0;q<o;++q){d.call(g,j[0][q],r=m[q],k[0][q][1]);for(p=1;p<n;++p)d.call(g,j[p][q],r+=k[p-1][q][1],k[p][q][1])}return h}var a=Object,b=r["default"],c=s.zero,d=q,e=o,f=p;return g.values=function(b){return arguments.length?(a=b,g):a},g.order=function(a){return arguments.length?(b=typeof a=="function"?a:r[a],g):b},g.offset=function(a){return arguments.length?(c=typeof a=="function"?a:s[a],g):c},g.x=function(a){return arguments.length?(e=a,g):e},g.y=function(a){return arguments.length?(f=a,g):f},g.out=function(a){return arguments.length?(d=a,g):d},g};var r={"inside-out":function(a){var b=a.length,c,d,e=a.map(t),f=a.map(u),g=d3.range(b).sort(function(a,b){return e[a]-e[b]}),h=0,i=0,j=[],k=[];for(c=0;c<b;++c)d=g[c],h<i?(h+=f[d],j.push(d)):(i+=f[d],k.push(d));return k.reverse().concat(j)},reverse:function(a){return d3.range(a.length).reverse()},"default":function(a){return d3.range(a.length)}},s={silhouette:function(a){var b=a.length,c=a[0].length,d=[],e=0,f,g,h,i=[];for(g=0;g<c;++g){for(f=0,h=0;f<b;f++)h+=a[f][g][1];h>e&&(e=h),d.push(h)}for(g=0;g<c;++g)i[g]=(e-d[g])/2;return i},wiggle:function(a){var b=a.length,c=a[0],d=c.length,e=0,f,g,h,i,j,k,l,m,n,o=[];o[0]=m=n=0;for(g=1;g<d;++g){for(f=0,i=0;f<b;++f)i+=a[f][g][1];for(f=0,j=0,l=c[g][0]-c[g-1][0];f<b;++f){for(h=0,k=(a[f][g][1]-a[f][g-1][1])/(2*l);h<f;++h)k+=(a[h][g][1]-a[h][g-1][1])/l;j+=k*a[f][g][1]}o[g]=m-=i?j/i*l:0,m<n&&(n=m)}for(g=0;g<d;++g)o[g]-=n;return o},expand:function(a){var b=a.length,c=a[0].length,d=1/b,e,f,g,h=[];for(f=0;f<c;++f){for(e=0,g=0;e<b;e++)g+=a[e][f][1];if(g)for(e=0;e<b;e++)a[e][f][1]/=g;else for(e=0;e<b;e++)a[e][f][1]=d}for(f=0;f<c;++f)h[f]=0;return h},zero:function(a){var b=-1,c=a[0].length,d=[];while(++b<c)d[b]=0;return d}};d3.layout.histogram=function(){function e(e,f){var g=[],h=e.map(b,this),i=c.call(this,h,f),j=d.call(this,i,h,f),k,f=-1,l=h.length,m=j.length-1,n=a?1:1/l,o;while(++f<m)k=g[f]=[],k.dx=j[f+1]-(k.x=j[f]),k.y=0;f=-1;while(++f<l)o=h[f],o>=i[0]&&o<=i[1]&&(k=g[d3.bisect(j,o,1,m)-1],k.y+=n,k.push(e[f]));return g}var a=!0,b=Number,c=y,d=w;return e.value=function(a){return arguments.length?(b=a,e):b},e.range=function(a){return arguments.length?(c=d3.functor(a),e):c},e.bins=function(a){return arguments.length?(d=typeof a=="number"?function(b){return x(b,a)}:d3.functor(a),e):d},e.frequency=function(b){return arguments.length?(a=!!b,e):a},e},d3.layout.hierarchy=function(){function e(f,h,i){var j=b.call(g,f,h),k=E?f:{data:f};k.depth=h,i.push(k);if(j&&(m=j.length)){var l=-1,m,n=k.children=[],o=0,p=h+1;while(++l<m)d=e(j[l],p,i),d.parent=k,n.push(d),o+=d.value;a&&n.sort(a),c&&(k.value=o)}else c&&(k.value=+c.call(g,f,h)||0);return k}function f(a,b){var d=a.children,e=0;if(d&&(i=d.length)){var h=-1,i,j=b+1;while(++h<i)e+=f(d[h],j)}else c&&(e=+c.call(g,E?a:a.data,b)||0);return c&&(a.value=e),e}function g(a){var b=[];return e(a,0,b),b}var a=C,b=A,c=B;return g.sort=function(b){return arguments.length?(a=b,g):a},g.children=function(a){return arguments.length?(b=a,g):b},g.value=function(a){return arguments.length?(c=a,g):c},g.revalue=function(a){return f(a,0),a},g};var E=!1;d3.layout.pack=function(){function c(c,d){var e=a.call(this,c,d),f=e[0];f.x=0,f.y=0,M(f);var g=b[0],h=b[1],i=1/Math.max(2*f.r/g,2*f.r/h);return N(f,g/2,h/2,i),e}var a=d3.layout.hierarchy().sort(F),b=[1,1];return c.size=function(a){return arguments.length?(b=a,c):b},z(c,a)},d3.layout.cluster=function(){function d(d,e){var f=a.call(this,d,e),g=f[0],h,i=0,j,k;$(g,function(a){var c=a.children;c&&c.length?(a.x=Q(c),a.y=P(c)):(a.x=h?i+=b(a,h):0,a.y=0,h=a)});var l=R(g),m=S(g),n=l.x-b(l,m)/2,o=m.x+b(m,l)/2;return $(g,function(a){a.x=(a.x-n)/(o-n)*c[0],a.y=(1-a.y/g.y)*c[1]}),f}var a=d3.layout.hierarchy().sort(null).value(null),b=T,c=[1,1];return d.separation=function(a){return arguments.length?(b=a,d):b},d.size=function(a){return arguments.length?(c=a,d):c},z(d,a)},d3.layout.tree=function(){function d(d,e){function h(a,c){var d=a.children,e=a._tree;if(d&&(f=d.length)){var f,g=d[0],i,k=g,l,m=-1;while(++m<f)l=d[m],h(l,i),k=j(l,i,k),i=l;_(a);var n=.5*(g._tree.prelim+l._tree.prelim);c?(e.prelim=c._tree.prelim+b(a,c),e.mod=e.prelim-n):e.prelim=n}else c&&(e.prelim=c._tree.prelim+b(a,c))}function i(a,b){a.x=a._tree.prelim+b;var c=a.children;if(c&&(e=c.length)){var d=-1,e;b+=a._tree.mod;while(++d<e)i(c[d],b)}}function j(a,c,d){if(c){var e=a,f=a,g=c,h=a.parent.children[0],i=e._tree.mod,j=f._tree.mod,k=g._tree.mod,l=h._tree.mod,m;while(g=V(g),e=U(e),g&&e)h=U(h),f=V(f),f._tree.ancestor=a,m=g._tree.prelim+k-e._tree.prelim-i+b(g,e),m>0&&(ba(bb(g,a,d),a,m),i+=m,j+=m),k+=g._tree.mod,i+=e._tree.mod,l+=h._tree.mod,j+=f._tree.mod;g&&!V(f)&&(f._tree.thread=g,f._tree.mod+=k-j),e&&!U(h)&&(h._tree.thread=e,h._tree.mod+=i-l,d=a)}return d}var f=a.call(this,d,e),g=f[0];$(g,function(a,b){a._tree={ancestor:a,prelim:0,mod:0,change:0,shift:0,number:b?b._tree.number+1:0}}),h(g),i(g,-g._tree.prelim);var k=W(g,Y),l=W(g,X),m=W(g,Z),n=k.x-b(k,l)/2,o=l.x+b(l,k)/2,p=m.depth||1;return $(g,function(a){a.x=(a.x-n)/(o-n)*c[0],a.y=a.depth/p*c[1],delete a._tree}),f}var a=d3.layout.hierarchy().sort(null).value(null),b=T,c=[1,1];return d.separation=function(a){return arguments.length?(b=a,d):b},d.size=function(a){return arguments.length?(c=a,d):c},z(d,a)},d3.layout.treemap=function(){function i(a,b){var c=-1,d=a.length,e,f;while(++c<d)f=(e=a[c]).value*(b<0?0:b),e.area=isNaN(f)||f<=0?0:f}function j(a){var b=a.children;if(b&&b.length){var c=e(a),d=[],f=b.slice(),g,h=Infinity,k,n=Math.min(c.dx,c.dy),o;i(f,c.dx*c.dy/a.value),d.area=0;while((o=f.length)>0)d.push(g=f[o-1]),d.area+=g.area,(k=l(d,n))<=h?(f.pop(),h=k):(d.area-=d.pop().area,m(d,n,c,!1),n=Math.min(c.dx,c.dy),d.length=d.area=0,h=Infinity);d.length&&(m(d,n,c,!0),d.length=d.area=0),b.forEach(j)}}function k(a){var b=a.children;if(b&&b.length){var c=e(a),d=b.slice(),f,g=[];i(d,c.dx*c.dy/a.value),g.area=0;while(f=d.pop())g.push(f),g.area+=f.area,f.z!=null&&(m(g,f.z?c.dx:c.dy,c,!d.length),g.length=g.area=0);b.forEach(k)}}function l(a,b){var c=a.area,d,e=0,f=Infinity,g=-1,i=a.length;while(++g<i){if(!(d=a[g].area))continue;d<f&&(f=d),d>e&&(e=d)}return c*=c,b*=b,c?Math.max(b*e*h/c,c/(b*f*h)):Infinity}function m(a,c,d,e){var f=-1,g=a.length,h=d.x,i=d.y,j=c?b(a.area/c):0,k;if(c==d.dx){if(e||j>d.dy)j=j?d.dy:0;while(++f<g)k=a[f],k.x=h,k.y=i,k.dy=j,h+=k.dx=j?b(k.area/j):0;k.z=!0,k.dx+=d.x+d.dx-h,d.y+=j,d.dy-=j}else{if(e||j>d.dx)j=j?d.dx:0;while(++f<g)k=a[f],k.x=h,k.y=i,k.dx=j,i+=k.dy=j?b(k.area/j):0;k.z=!1,k.dy+=d.y+d.dy-i,d.x+=j,d.dx-=j}}function n(b){var d=g||a(b),e=d[0];return e.x=0,e.y=0,e.dx=c[0],e.dy=c[1],g&&a.revalue(e),i([e],e.dx*e.dy/e.value),(g?k:j)(e),f&&(g=d),d}var a=d3.layout.hierarchy(),b=Math.round,c=[1,1],d=null,e=bc,f=!1,g,h=.5*(1+Math.sqrt(5));return n.size=function(a){return arguments.length?(c=a,n):c},n.padding=function(a){function b(b){var c=a.call(n,b,b.depth);return c==null?bc(b):bd(b,typeof c=="number"?[c,c,c,c]:c)}function c(b){return bd(b,a)}if(!arguments.length)return d;var f;return e=(d=a)==null?bc:(f=typeof a)==="function"?b:f==="number"?(a=[a,a,a,a],c):c,n},n.round=function(a){return arguments.length?(b=a?Math.round:Number,n):b!=Number},n.sticky=function(a){return arguments.length?(f=a,g=null,n):f},n.ratio=function(a){return arguments.length?(h=a,n):h},z(n,a)}})();
 (function(){function k(a){return{x:a[0],y:a[1]}}function j(a,b,c,d,e,f){if(!a(b,c,d,e,f)){var g=(c+e)*.5,h=(d+f)*.5,i=b.nodes;i[0]&&j(a,i[0],c,d,g,h),i[1]&&j(a,i[1],g,d,e,h),i[2]&&j(a,i[2],c,h,g,f),i[3]&&j(a,i[3],g,h,e,f)}}function i(){return{leaf:!0,nodes:[],point:null}}function h(a,b){var c={list:a.map(function(a,b){return{index:b,x:a[0],y:a[1]}}).sort(function(a,b){return a.y<b.y?-1:a.y>b.y?1:a.x<b.x?-1:a.x>b.x?1:0}),bottomSite:null},d={list:[],leftEnd:null,rightEnd:null,init:function(){d.leftEnd=d.createHalfEdge(null,"l"),d.rightEnd=d.createHalfEdge(null,"l"),d.leftEnd.r=d.rightEnd,d.rightEnd.l=d.leftEnd,d.list.unshift(d.leftEnd,d.rightEnd)},createHalfEdge:function(a,b){return{edge:a,side:b,vertex:null,l:null,r:null}},insert:function(a,b){b.l=a,b.r=a.r,a.r.l=b,a.r=b},leftBound:function(a){var b=d.leftEnd;do b=b.r;while(b!=d.rightEnd&&e.rightOf(b,a));b=b.l;return b},del:function(a){a.l.r=a.r,a.r.l=a.l,a.edge=null},right:function(a){return a.r},left:function(a){return a.l},leftRegion:function(a){return a.edge==null?c.bottomSite:a.edge.region[a.side]},rightRegion:function(a){return a.edge==null?c.bottomSite:a.edge.region[g[a.side]]}},e={bisect:function(a,b){var c={region:{l:a,r:b},ep:{l:null,r:null}},d=b.x-a.x,e=b.y-a.y,f=d>0?d:-d,g=e>0?e:-e;c.c=a.x*d+a.y*e+(d*d+e*e)*.5,f>g?(c.a=1,c.b=e/d,c.c/=d):(c.b=1,c.a=d/e,c.c/=e);return c},intersect:function(a,b){var c=a.edge,d=b.edge;if(!c||!d||c.region.r==d.region.r)return null;var e=c.a*d.b-c.b*d.a;if(Math.abs(e)<1e-10)return null;var f=(c.c*d.b-d.c*c.b)/e,g=(d.c*c.a-c.c*d.a)/e,h=c.region.r,i=d.region.r,j,k;h.y<i.y||h.y==i.y&&h.x<i.x?(j=a,k=c):(j=b,k=d);var l=f>=k.region.r.x;return l&&j.side==="l"||!l&&j.side==="r"?null:{x:f,y:g}},rightOf:function(a,b){var c=a.edge,d=c.region.r,e=b.x>d.x;if(e&&a.side==="l")return 1;if(!e&&a.side==="r")return 0;if(c.a===1){var f=b.y-d.y,g=b.x-d.x,h=0,i=0;!e&&c.b<0||e&&c.b>=0?i=h=f>=c.b*g:(i=b.x+b.y*c.b>c.c,c.b<0&&(i=!i),i||(h=1));if(!h){var j=d.x-c.region.l.x;i=c.b*(g*g-f*f)<j*f*(1+2*g/j+c.b*c.b),c.b<0&&(i=!i)}}else{var k=c.c-c.a*b.x,l=b.y-k,m=b.x-d.x,n=k-d.y;i=l*l>m*m+n*n}return a.side==="l"?i:!i},endPoint:function(a,c,d){a.ep[c]=d;!a.ep[g[c]]||b(a)},distance:function(a,b){var c=a.x-b.x,d=a.y-b.y;return Math.sqrt(c*c+d*d)}},f={list:[],insert:function(a,b,c){a.vertex=b,a.ystar=b.y+c;for(var d=0,e=f.list,g=e.length;d<g;d++){var h=e[d];if(a.ystar>h.ystar||a.ystar==h.ystar&&b.x>h.vertex.x)continue;break}e.splice(d,0,a)},del:function(a){for(var b=0,c=f.list,d=c.length;b<d&&c[b]!=a;++b);c.splice(b,1)},empty:function(){return f.list.length===0},nextEvent:function(a){for(var b=0,c=f.list,d=c.length;b<d;++b)if(c[b]==a)return c[b+1];return null},min:function(){var a=f.list[0];return{x:a.vertex.x,y:a.ystar}},extractMin:function(){return f.list.shift()}};d.init(),c.bottomSite=c.list.shift();var h=c.list.shift(),i,j,k,l,m,n,o,p,q,r,s,t,u;for(;;){f.empty()||(i=f.min());if(h&&(f.empty()||h.y<i.y||h.y==i.y&&h.x<i.x))j=d.leftBound(h),k=d.right(j),o=d.rightRegion(j),t=e.bisect(o,h),n=d.createHalfEdge(t,"l"),d.insert(j,n),r=e.intersect(j,n),r&&(f.del(j),f.insert(j,r,e.distance(r,h))),j=n,n=d.createHalfEdge(t,"r"),d.insert(j,n),r=e.intersect(n,k),r&&f.insert(n,r,e.distance(r,h)),h=c.list.shift();else if(!f.empty())j=f.extractMin(),l=d.left(j),k=d.right(j),m=d.right(k),o=d.leftRegion(j),p=d.rightRegion(k),s=j.vertex,e.endPoint(j.edge,j.side,s),e.endPoint(k.edge,k.side,s),d.del(j),f.del(k),d.del(k),u="l",o.y>p.y&&(q=o,o=p,p=q,u="r"),t=e.bisect(o,p),n=d.createHalfEdge(t,u),d.insert(l,n),e.endPoint(t,g[u],s),r=e.intersect(l,n),r&&(f.del(l),f.insert(l,r,e.distance(r,o))),r=e.intersect(n,m),r&&f.insert(n,r,e.distance(r,o));else break}for(j=d.right(d.leftEnd);j!=d.rightEnd;j=d.right(j))b(j.edge)}function f(a,b,c,d){var e=a[0],f=b[0],g=c[0],h=d[0],i=a[1],j=b[1],k=c[1],l=d[1],m=e-g,n=f-e,o=h-g,p=i-k,q=j-i,r=l-k,s=(o*p-r*m)/(r*n-o*q);return[e+s*n,i+s*q]}function e(a,b,c){return(c[0]-b[0])*(a[1]-b[1])<(c[1]-b[1])*(a[0]-b[0])}function d(a,b,c,d){var e,f,g,h,i,j,k;e=d[a],f=e[0],g=e[1],e=d[b],h=e[0],i=e[1],e=d[c],j=e[0],k=e[1];return(k-g)*(h-f)-(i-g)*(j-f)>0}function c(a){var b=0,c=0;for(;;){if(a(b,c))return[b,c];b===0?(b=c+1,c=0):(b=b-1,c=c+1)}}d3.geom={},d3.geom.contour=function(d,e){var f=e||c(d),g=[],h=f[0],i=f[1],j=0,k=0,l=NaN,m=NaN,n=0;do n=0,d(h-1,i-1)&&(n+=1),d(h,i-1)&&(n+=2),d(h-1,i)&&(n+=4),d(h,i)&&(n+=8),n===6?(j=m===-1?-1:1,k=0):n===9?(j=0,k=l===1?-1:1):(j=a[n],k=b[n]),j!=l&&k!=m&&(g.push([h,i]),l=j,m=k),h+=j,i+=k;while(f[0]!=h||f[1]!=i);return g};var a=[1,0,1,1,-1,0,-1,1,0,0,0,0,-1,0,-1,NaN],b=[0,-1,0,0,0,-1,0,0,1,-1,1,1,0,-1,0,NaN];d3.geom.hull=function(a){if(a.length<3)return[];var b=a.length,c=b-1,e=[],f=[],g,h,i=0,j,k,l,m,n,o,p,q;for(g=1;g<b;++g)a[g][1]<a[i][1]?i=g:a[g][1]==a[i][1]&&(i=a[g][0]<a[i][0]?g:i);for(g=0;g<b;++g){if(g===i)continue;k=a[g][1]-a[i][1],j=a[g][0]-a[i][0],e.push({angle:Math.atan2(k,j),index:g})}e.sort(function(a,b){return a.angle-b.angle}),p=e[0].angle,o=e[0].index,n=0;for(g=1;g<c;++g)h=e[g].index,p==e[g].angle?(j=a[o][0]-a[i][0],k=a[o][1]-a[i][1],l=a[h][0]-a[i][0],m=a[h][1]-a[i][1],j*j+k*k>=l*l+m*m?e[g].index=-1:(e[n].index=-1,p=e[g].angle,n=g,o=h)):(p=e[g].angle,n=g,o=h);f.push(i);for(g=0,h=0;g<2;++h)e[h].index!==-1&&(f.push(e[h].index),g++);q=f.length;for(;h<c;++h){if(e[h].index===-1)continue;while(!d(f[q-2],f[q-1],e[h].index,a))--q;f[q++]=e[h].index}var r=[];for(g=0;g<q;++g)r.push(a[f[g]]);return r},d3.geom.polygon=function(a){a.area=function(){var b=0,c=a.length,d=a[c-1][0]*a[0][1],e=a[c-1][1]*a[0][0];while(++b<c)d+=a[b-1][0]*a[b][1],e+=a[b-1][1]*a[b][0];return(e-d)*.5},a.centroid=function(b){var c=-1,d=a.length-1,e=0,f=0,g,h,i;arguments.length||(b=1/(6*a.area()));while(++c<d)g=a[c],h=a[c+1],i=g[0]*h[1]-h[0]*g[1],e+=(g[0]+h[0])*i,f+=(g[1]+h[1])*i;return[e*b,f*b]},a.clip=function(b){var c,d=-1,g=a.length,h,i,j=a[g-1],k,l,m;while(++d<g){c=b.slice(),b.length=0,k=a[d],l=c[(i=c.length)-1],h=-1;while(++h<i)m=c[h],e(m,j,k)?(e(l,j,k)||b.push(f(l,m,j,k)),b.push(m)):e(l,j,k)&&b.push(f(l,m,j,k)),l=m;j=k}return b};return a},d3.geom.voronoi=function(a){var b=a.map(function(){return[]});h(a,function(a){var c,d,e,f,g,h;a.a===1&&a.b>=0?(c=a.ep.r,d=a.ep.l):(c=a.ep.l,d=a.ep.r),a.a===1?(g=c?c.y:-1e6,e=a.c-a.b*g,h=d?d.y:1e6,f=a.c-a.b*h):(e=c?c.x:-1e6,g=a.c-a.a*e,f=d?d.x:1e6,h=a.c-a.a*f);var i=[e,g],j=[f,h];b[a.region.l.index].push(i,j),b[a.region.r.index].push(i,j)});return b.map(function(b,c){var d=a[c][0],e=a[c][1];b.forEach(function(a){a.angle=Math.atan2(a[0]-d,a[1]-e)});return b.sort(function(a,b){return a.angle-b.angle}).filter(function(a,c){return!c||a.angle-b[c-1].angle>1e-10})})};var g={l:"r",r:"l"};d3.geom.delaunay=function(a){var b=a.map(function(){return[]}),c=[];h(a,function(c){b[c.region.l.index].push(a[c.region.r.index])}),b.forEach(function(b,d){var e=a[d],f=e[0],g=e[1];b.forEach(function(a){a.angle=Math.atan2(a[0]-f,a[1]-g)}),b.sort(function(a,b){return a.angle-b.angle});for(var h=0,i=b.length-1;h<i;h++)c.push([e,b[h],b[h+1]])});return c},d3.geom.quadtree=function(a,b,c,d,e){function o(a,b,c,d,e,f){var g=(c+e)*.5,h=(d+f)*.5,j=b.x>=g,k=b.y>=h,l=(k<<1)+j;a.leaf=!1,a=a.nodes[l]||(a.nodes[l]=i()),j?c=g:e=g,k?d=h:f=h,n(a,b,c,d,e,f)}function n(a,b,c,d,e,f){if(!isNaN(b.x)&&!isNaN(b.y))if(a.leaf){var g=a.point;g?Math.abs(g.x-b.x)+Math.abs(g.y-b.y)<.01?o(a,b,c,d,e,f):(a.point=null,o(a,g,c,d,e,f),o(a,b,c,d,e,f)):a.point=b}else o(a,b,c,d,e,f)}var f,g=-1,h=a.length;h&&isNaN(a[0].x)&&(a=a.map(k));if(arguments.length<5)if(arguments.length===3)e=d=c,c=b;else{b=c=Infinity,d=e=-Infinity;while(++g<h)f=a[g],f.x<b&&(b=f.x),f.y<c&&(c=f.y),f.x>d&&(d=f.x),f.y>e&&(e=f.y);var l=d-b,m=e-c;l>m?e=c+l:d=b+m}var p=i();p.add=function(a){n(p,a,b,c,d,e)},p.visit=function(a){j(a,p,b,c,d,e)},a.forEach(p.add);return p}})()
 ;
-(function() {
-  var BubbleChart, root,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+var BubbleChart,
+    root,
+    __bind = function(fn, me){
+        return function(){
+            return fn.apply(me, arguments);
+        };
+    };
 
-  BubbleChart = (function() {
+BubbleChart = (function() {
+
     function BubbleChart(data) {
-      this.hide_details = __bind(this.hide_details, this);
-      this.show_details = __bind(this.show_details, this);
-      this.hide_categories = __bind(this.hide_categories, this);
-      this.display_categories = __bind(this.display_categories, this);
-      this.move_towards_category = __bind(this.move_towards_category, this);
-      this.display_by_category = __bind(this.display_by_category, this);
-      this.move_towards_center = __bind(this.move_towards_center, this);
-      this.display_group_all = __bind(this.display_group_all, this);
-      this.start = __bind(this.start, this);
-      this.create_vis = __bind(this.create_vis, this);
-      this.create_nodes = __bind(this.create_nodes, this);
-      var max_amount;
-      this.data = data;
-      this.width = 600;
-      this.height = 400;
-      this.tooltip = CustomTooltip("pulse_tooltip", 240);
-      this.center = {
-        x: this.width / 2,
-        y: this.height / 2
-      };
-      this.category_centers = {
-        "Advertising": {
-          x: this.width / 4,
-          y: this.height / 2
-        },
-        "Tech": {
-          x: this.width / 3,
-          y: this.height / 2
-        },
-        "Education": {
-          x: this.width / 2,
-          y: this.height / 2
-        },
-        "Ecommerce": {
-          x: 2 * this.width / 3.25,
-          y: this.height / 2
-        },
-        "Other": {
-          x: 2 * this.width / 2.7,
-          y: this.height / 2
-        }
-      };
-      this.layout_gravity = -0.01;
-      this.damper = 0.1;
-      this.vis = null;
-      this.nodes = [];
-      this.force = null;
-      this.circles = null;
-      this.fill_color = d3.scale.category20c();
-      max_amount = d3.max(this.data, function(d) {
-        return parseInt(d.total_amount);
-      });
-      this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
-      this.create_nodes();
-      this.create_vis();
+        this.hide_details = __bind(this.hide_details, this);
+
+        this.show_details = __bind(this.show_details, this);
+
+        this.hide_categories = __bind(this.hide_categories, this);
+
+        this.display_categories = __bind(this.display_categories, this);
+
+        this.move_towards_category = __bind(this.move_towards_category, this);
+
+        this.display_by_category = __bind(this.display_by_category, this);
+
+        this.move_towards_center = __bind(this.move_towards_center, this);
+
+        this.display_group_all = __bind(this.display_group_all, this);
+
+        this.start = __bind(this.start, this);
+
+        this.create_vis = __bind(this.create_vis, this);
+
+        this.create_nodes = __bind(this.create_nodes, this);
+
+        var max_amount;
+        this.data = data;
+        this.width = 600;
+        this.height = 400;
+        this.tooltip = CustomTooltip("pulse_tooltip", 240);
+        this.center = {
+            x: this.width / 2,
+            y: this.height / 2
+        };
+        this.category_centers = {
+            "Advertising": {
+                x: this.width / 4,
+                y: this.height / 2
+            },
+            "Tech": {
+                x: this.width / 3,
+                y: this.height / 2
+            },
+            "Education": {
+                x: this.width / 2,
+                y: this.height / 2
+            },
+            "Ecommerce": {
+                x: 2 * this.width / 3.1,
+                y: this.height / 2
+            },
+            "Other": {
+                x: 2 * this.width / 2.5,
+                y: this.height / 2
+            }
+        };
+        this.layout_gravity = -0.01;
+        this.damper = 0.1;
+        this.vis = null;
+        this.nodes = [];
+        this.force = null;
+        this.circles = null;
+        this.fill_color = d3.scale.category20c();
+        max_amount = d3.max(this.data, function(d) {
+            return parseInt(d.total_amount);
+        });
+        this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 220]).range([5, 60]);
+        this.create_nodes();
+        this.create_vis();
     }
 
     BubbleChart.prototype.create_nodes = function() {
-      var _this = this;
-      this.data.forEach(function(d) {
-        var node;
-        node = {
-          id: d.id,
-          radius: _this.radius_scale(parseInt(d.total_amount)),
-          value: d.total_amount,
-          name: d.name,
-          org: d.twitter_username,
-          group: d.group,
-          category: d.category_code,
-          x: Math.random() * 900,
-          y: Math.random() * 800
-        };
-        return _this.nodes.push(node);
-      });
-      return this.nodes.sort(function(a, b) {
-        return b.value - a.value;
-      });
+        var _this = this;
+        this.data.forEach(function(d) {
+            var node;
+            node = {
+                id: d.id,
+                radius: _this.radius_scale(parseInt(d.total_amount)),
+                value: d.total_amount,
+                name: d.name,
+                org: d.twitter_username,
+                group: d.group,
+                category: d.category_code,
+                x: Math.random() * 900,
+                y: Math.random() * 800
+            };
+            return _this.nodes.push(node);
+        });
+        return this.nodes.sort(function(a, b) {
+            return b.value - a.value;
+        });
     };
 
     BubbleChart.prototype.create_vis = function() {
-      var that,
-        _this = this;
-      this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
-      this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
-        return d.id;
-      });
-      that = this;
-      this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d) {
-        return _this.fill_color(d.value);
-      }).attr("stroke-width", 2).attr("stroke", function(d) {
-        return d3.rgb(_this.fill_color(d.value)).brighter();
-      }).attr("id", function(d) {
-        return "bubble_" + d.id;
-      }).style("opacity", "0.8").on("mouseover", function(d, i) {
-        return that.show_details(d, i, this);
-      }).on("mouseout", function(d, i) {
-        return that.hide_details(d, i, this);
-      });
-      return this.circles.transition().duration(2000).attr("r", function(d) {
-        return d.radius;
-      });
+        var that,
+            _this = this;
+        this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
+        this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
+            return d.id;
+        });
+        that = this;
+        this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d) {
+            return _this.fill_color(d.value);
+        }).attr("stroke-width", 1).attr("stroke", function(d) {
+            return d3.rgb(_this.fill_color(d.value)).brighter();
+        }).attr("id", function(d) {
+            return "bubble_" + d.id;
+        }).style("opacity", "0.8").on("mouseover", function(d, i) {
+            return that.show_details(d, i, this);
+        }).on("mouseout", function(d, i) {
+            return that.hide_details(d, i, this);
+        });
+        return this.circles.transition().duration(2000).attr("r", function(d) {
+            return d.radius;
+        });
     };
 
     BubbleChart.prototype.charge = function(d) {
-      return -Math.pow(d.radius, 2.0) / 8;
+        return -Math.pow(d.radius, 2.0) / 8;
     };
 
     BubbleChart.prototype.start = function() {
-      return this.force = d3.layout.force().nodes(this.nodes).size([this.width, this.height]);
+        return this.force = d3.layout.force().nodes(this.nodes).size([this.width, this.height]);
     };
 
     BubbleChart.prototype.display_group_all = function() {
-      var _this = this;
-      this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", function(e) {
-        return _this.circles.each(_this.move_towards_center(e.alpha)).attr("cx", function(d) {
-          return d.x;
-        }).attr("cy", function(d) {
-          return d.y;
+        var _this = this;
+        this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", function(e) {
+            return _this.circles.each(_this.move_towards_center(e.alpha)).attr("cx", function(d) {
+                return d.x;
+            }).attr("cy", function(d) {
+                return d.y;
+            });
         });
-      });
-      this.force.start();
-      return this.hide_categories();
+        this.force.start();
+        return this.hide_categories();
     };
 
     BubbleChart.prototype.move_towards_center = function(alpha) {
-      var _this = this;
-      return function(d) {
-        d.x = d.x + (_this.center.x - d.x) * (_this.damper + 0.02) * alpha;
-        return d.y = d.y + (_this.center.y - d.y) * (_this.damper + 0.02) * alpha;
-      };
+        var _this = this;
+        return function(d) {
+            d.x = d.x + (_this.center.x - d.x) * (_this.damper + 0.02) * alpha;
+            return d.y = d.y + (_this.center.y - d.y) * (_this.damper + 0.02) * alpha;
+        };
     };
 
     BubbleChart.prototype.display_by_category = function() {
-      var _this = this;
-      this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", function(e) {
-        return _this.circles.each(_this.move_towards_category(e.alpha)).attr("cx", function(d) {
-          return d.x;
-        }).attr("cy", function(d) {
-          return d.y;
+        var _this = this;
+        this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", function(e) {
+            return _this.circles.each(_this.move_towards_category(e.alpha)).attr("cx", function(d) {
+                return d.x;
+            }).attr("cy", function(d) {
+                return d.y;
+            });
         });
-      });
-      this.force.start();
-      return this.display_categories();
+        this.force.start();
+        return this.display_categories();
     };
 
     BubbleChart.prototype.move_towards_category = function(alpha) {
-      var _this = this;
-      return function(d) {
-        var target;
-        target = _this.category_centers[d.category];
-        d.x = d.x + (target.x - d.x) * (_this.damper + 0.02) * alpha * 1.1;
-        return d.y = d.y + (target.y - d.y) * (_this.damper + 0.02) * alpha * 1.1;
-      };
-    };
+        var _this = this;
+        return function(d) {
+            var target;
+            target = _this.category_centers[d.category];
+            d.x = d.x + (target.x - d.x) * (_this.damper + 0.02) * alpha * 1.1;
+            return d.y = d.y + (target.y - d.y) * (_this.damper + 0.02) * alpha * 1.1;
+        };
+  };
 
     BubbleChart.prototype.display_categories = function() {
-      var categories, categories_data, categories_x,
-        _this = this;
-      categories_x = {
-        "Advertising": 60,
-        "Tech": this.width / 3.3,
-        "Education": this.width / 2,
-        "Ecommerce": this.width / 1.4,
-        "Other": this.width - 60
-      };
-      categories_data = d3.keys(categories_x);
-      categories = this.vis.selectAll(".categories").data(categories_data);
-      return categories.enter().append("text").attr("class", "categories").attr("x", function(d) {
-        return categories_x[d];
-      }).attr("y", 40).attr("text-anchor", "middle").text(function(d) {
-        return d;
-      });
+        var categories,
+            categories_data,
+            categories_x,
+            _this = this;
+        categories_x = {
+            "Advertising": 60,
+            "Tech": this.width / 3.3,
+            "Education": this.width / 2,
+            "Ecommerce": this.width / 1.4,
+            "Other": this.width - 60
+        };
+        categories_data = d3.keys(categories_x);
+        categories = this.vis.selectAll(".categories").data(categories_data);
+        return categories.enter().append("text").attr("class", "categories").attr("x", function(d) {
+            return categories_x[d];
+        }).attr("y", 40).attr("text-anchor", "middle").text(function(d) {
+            return d;
+        });
     };
 
     BubbleChart.prototype.hide_categories = function() {
-      var categories;
-      return categories = this.vis.selectAll(".categories").remove();
+        var categories;
+        return categories = this.vis.selectAll(".categories").remove();
     };
 
     BubbleChart.prototype.show_details = function(data, i, element) {
-      var content,
-        _this = this;
-      d3.select(element).attr("stroke", function(d) {
-        return d3.rgb(_this.fill_color(d.value)).darker();
-      });
-      content = "<span class=\"name\"></span><span class=\"value\"> <h3>" + data.name + "</h3></span><hr>";
-      content += "<span class=\"name\">Pulse:</span><span class=\"value\"> " + data.value + "</span><br/>";
-      content += "<span class=\"name\">Sector:</span><span class=\"value\"> " + data.category + "</span>";
-      return this.tooltip.showTooltip(content, d3.event);
+        var content,
+            _this = this;
+        d3.select(element).attr("stroke", function(d) {
+            return d3.rgb(_this.fill_color(d.value)).darker();
+        });
+        content = "<span class=\"name\"></span><span class=\"value\"> <h3>" + data.name + "</h3></span><hr>";
+        content += "<span class=\"name\">Pulse:</span><span class=\"value\"> " + data.value + "</span><br/>";
+        content += "<span class=\"name\">Sector:</span><span class=\"value\"> " + data.category + "</span>";
+        return this.tooltip.showTooltip(content, d3.event);
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
-      var _this = this;
-      d3.select(element).attr("stroke", function(d) {
-        return d3.rgb(_this.fill_color(d.group)).brighter();
-      });
-      return this.tooltip.hideTooltip();
+        var _this = this;
+        d3.select(element).attr("stroke", function(d) {
+            return d3.rgb(_this.fill_color(d.group)).brighter();
+        });
+        return this.tooltip.hideTooltip();
     };
 
     return BubbleChart;
 
-  })();
+})();
 
-  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-  $(function() {
-    var chart, render_vis,
-      _this = this;
-    chart = null;
+$(function() {
+    var chart,
+        render_vis,
+        _this = this;
+        chart = null;
     render_vis = function(csv) {
-      chart = new BubbleChart(csv);
-      chart.start();
-      return root.display_all();
+        chart = new BubbleChart(csv);
+        chart.start();
+        return root.display_all();
     };
     root.display_all = function() {
-      return chart.display_group_all();
+        return chart.display_group_all();
     };
     root.display_category = function() {
-      return chart.display_by_category();
+        return chart.display_by_category();
     };
     root.toggle_view = function(view_type) {
-      if (view_type === 'category') {
-        return root.display_category();
-      } else {
-        return root.display_all();
-      }
+        if (view_type === 'category') {
+            return root.display_category();
+        } else {
+            return root.display_all();
+        }
     };
-    d3.csv("assets/pulse.csv", render_vis);
-    return $.ajax({
-      url: "/data",
-      type: "get"
-    }).done(function(data) {
-      return console.log("hi");
-    });
-  });
-
-}).call(this);
+    return d3.csv("assets/pulse.csv", render_vis);
+});
 (function() {
   var CSRFToken, anchoredLink, browserCompatibleDocumentParser, browserIsntBuggy, browserSupportsPushState, cacheCurrentPage, cacheSize, changePage, constrainPageCacheTo, createDocument, crossOriginLink, currentState, executeScriptTags, extractLink, extractTitleAndBody, fetchHistory, fetchReplacement, handleClick, ignoreClick, initializeTurbolinks, installClickHandlerLast, loadedAssets, noTurbolink, nonHtmlLink, nonStandardClick, pageCache, pageChangePrevented, pagesCached, processResponse, recallScrollPosition, referer, reflectNewUrl, reflectRedirectedUrl, rememberCurrentState, rememberCurrentUrl, removeHash, removeNoscriptTags, requestMethod, requestMethodIsSafe, resetScrollPosition, targetLink, triggerEvent, visit, xhr, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11403,260 +11414,6 @@ var makeMap = {
     },
 };
 topojson=function(){function e(e,t){function n(t){var n=e.arcs[t],r=n[0],a=[0,0];return n.forEach(function(e){a[0]+=e[0],a[1]+=e[1]}),[r,a]}var r={},a={};t.forEach(function(e){var t,o,i=n(e),u=i[0],c=i[1];if(t=a[u])if(delete a[t.end],t.push(e),t.end=c,o=r[c]){delete r[o.start];var s=o===t?t:t.concat(o);r[s.start=t.start]=a[s.end=o.end]=s}else if(o=a[c]){delete r[o.start],delete a[o.end];var s=t.concat(o.map(function(e){return~e}).reverse());r[s.start=t.start]=a[s.end=o.start]=s}else r[t.start]=a[t.end]=t;else if(t=r[c])if(delete r[t.start],t.unshift(e),t.start=u,o=a[u]){delete a[o.end];var f=o===t?t:o.concat(t);r[f.start=o.start]=a[f.end=t.end]=f}else if(o=r[u]){delete r[o.start],delete a[o.end];var f=o.map(function(e){return~e}).reverse().concat(t);r[f.start=o.end]=a[f.end=t.end]=f}else r[t.start]=a[t.end]=t;else if(t=r[u])if(delete r[t.start],t.unshift(~e),t.start=c,o=a[c]){delete a[o.end];var f=o===t?t:o.concat(t);r[f.start=o.start]=a[f.end=t.end]=f}else if(o=r[c]){delete r[o.start],delete a[o.end];var f=o.map(function(e){return~e}).reverse().concat(t);r[f.start=o.end]=a[f.end=t.end]=f}else r[t.start]=a[t.end]=t;else if(t=a[c])if(delete a[t.end],t.push(~e),t.end=u,o=a[u]){delete r[o.start];var s=o===t?t:t.concat(o);r[s.start=t.start]=a[s.end=o.end]=s}else if(o=r[u]){delete r[o.start],delete a[o.end];var s=t.concat(o.map(function(e){return~e}).reverse());r[s.start=t.start]=a[s.end=o.start]=s}else r[t.start]=a[t.end]=t;else t=[e],r[t.start=u]=a[t.end=c]=t});var o=[];for(var i in a)o.push(a[i]);return o}function t(t,n,r){function o(e){0>e&&(e=~e),(l[e]||(l[e]=[])).push(f)}function i(e){e.forEach(o)}function u(e){e.forEach(i)}function c(e){"GeometryCollection"===e.type?e.geometries.forEach(c):e.type in d&&(f=e,d[e.type](e.arcs))}var s=[];if(arguments.length>1){var f,l=[],d={LineString:i,MultiLineString:u,Polygon:u,MultiPolygon:function(e){e.forEach(u)}};c(n),l.forEach(arguments.length<3?function(e,t){s.push(t)}:function(e,t){r(e[0],e[e.length-1])&&s.push(t)})}else for(var p=0,v=t.arcs.length;v>p;++p)s.push(p);return a(t,{type:"MultiLineString",arcs:e(t,s)})}function n(e,t){return"GeometryCollection"===t.type?{type:"FeatureCollection",features:t.geometries.map(function(t){return r(e,t)})}:r(e,t)}function r(e,t){var n={type:"Feature",id:t.id,properties:t.properties||{},geometry:a(e,t)};return null==t.id&&delete n.id,n}function a(e,t){function n(e,t){t.length&&t.pop();for(var n,r=v[0>e?~e:e],a=0,i=r.length,u=0,c=0;i>a;++a)t.push(n=r[a].slice()),n[0]=(u+=n[0])*f+d,n[1]=(c+=n[1])*l+p;0>e&&o(t,i)}function r(e){return e=e.slice(),e[0]=e[0]*f+d,e[1]=e[1]*l+p,e}function a(e){for(var t=[],r=0,a=e.length;a>r;++r)n(e[r],t);return t.length<2&&t.push(t[0].slice()),t}function i(e){for(var t=a(e);t.length<4;)t.push(t[0].slice());return t}function u(e){return e.map(i)}function c(e){var t=e.type;return"GeometryCollection"===t?{type:t,geometries:e.geometries.map(c)}:t in h?{type:t,coordinates:h[t](e)}:null}var s=e.transform,f=s.scale[0],l=s.scale[1],d=s.translate[0],p=s.translate[1],v=e.arcs,h={Point:function(e){return r(e.coordinates)},MultiPoint:function(e){return e.coordinates.map(r)},LineString:function(e){return a(e.arcs)},MultiLineString:function(e){return e.arcs.map(a)},Polygon:function(e){return u(e.arcs)},MultiPolygon:function(e){return e.arcs.map(u)}};return c(t)}function o(e,t){for(var n,r=e.length,a=r-t;a<--r;)n=e[a],e[a++]=e[r],e[r]=n}function i(e,t){for(var n=0,r=e.length;r>n;){var a=n+r>>>1;e[a]<t?n=a+1:r=a}return n}function u(e){function t(e,t){e.forEach(function(e){0>e&&(e=~e);var n=a[e];n?n.push(t):a[e]=[t]})}function n(e,n){e.forEach(function(e){t(e,n)})}function r(e,t){"GeometryCollection"===e.type?e.geometries.forEach(function(e){r(e,t)}):e.type in u&&u[e.type](e.arcs,t)}var a={},o=e.map(function(){return[]}),u={LineString:t,MultiLineString:n,Polygon:n,MultiPolygon:function(e,t){e.forEach(function(e){n(e,t)})}};e.forEach(r);for(var c in a)for(var s=a[c],f=s.length,l=0;f>l;++l)for(var d=l+1;f>d;++d){var p,v=s[l],h=s[d];(p=o[v])[c=i(p,h)]!==h&&p.splice(c,0,h),(p=o[h])[c=i(p,v)]!==v&&p.splice(c,0,v)}return o}function c(e,t){function n(e){a.remove(e),e[1][2]=t(e),a.push(e)}var r,a=l(f),o=0;for(t||(t=s),e.arcs.forEach(function(n){var o=[];n.forEach(d(e.transform));for(var i=1,u=n.length-1;u>i;++i)r=n.slice(i-1,i+2),r[1][2]=t(r),o.push(r),a.push(r);n[0][2]=n[u][2]=1/0;for(var i=0,u=o.length;u>i;++i)r=o[i],r.previous=o[i-1],r.next=o[i+1]});r=a.pop();){var i=r.previous,u=r.next;r[1][2]<o?r[1][2]=o:o=r[1][2],i&&(i.next=u,i[2]=r[2],n(i)),u&&(u.previous=i,u[0]=r[0],n(u))}return e.arcs.forEach(function(t){t.forEach(p(e.transform))}),e}function s(e){return Math.abs((e[0][0]-e[2][0])*(e[1][1]-e[0][1])-(e[0][0]-e[1][0])*(e[2][1]-e[0][1]))}function f(e,t){return e[1][2]-t[1][2]}function l(e){function t(t){for(var n=a[t];t>0;){var r=(t+1>>1)-1,o=a[r];if(e(n,o)>=0)break;a[o.index=t]=o,a[n.index=t=r]=n}}function n(t){for(var n=a[t];;){var r=t+1<<1,o=r-1,i=t,u=a[i];if(o<a.length&&e(a[o],u)<0&&(u=a[i=o]),r<a.length&&e(a[r],u)<0&&(u=a[i=r]),i===t)break;a[u.index=t]=u,a[n.index=t=i]=n}}var r={},a=[];return r.push=function(){for(var e=0,n=arguments.length;n>e;++e){var r=arguments[e];t(r.index=a.push(r)-1)}return a.length},r.pop=function(){var e=a[0],t=a.pop();return a.length&&(a[t.index=0]=t,n(0)),e},r.remove=function(r){var o=r.index,i=a.pop();return o!==a.length&&(a[i.index=o]=i,(e(i,r)<0?t:n)(o)),o},r}function d(e){var t=0,n=0,r=e.scale[0],a=e.scale[1],o=e.translate[0],i=e.translate[1];return function(e){e[0]=(t+=e[0])*r+o,e[1]=(n+=e[1])*a+i}}function p(e){var t=0,n=0,r=e.scale[0],a=e.scale[1],o=e.translate[0],i=e.translate[1];return function(e){var u=0|(e[0]-o)/r,c=0|(e[1]-i)/a;e[0]=u-t,e[1]=c-n,t=u,n=c}}return{version:"1.3.0",mesh:t,feature:n,neighbors:u,presimplify:c}}();
-var BubbleChart,
-    root,
-    __bind = function(fn, me){
-        return function(){
-            return fn.apply(me, arguments);
-        };
-    };
-
-BubbleChart = (function() {
-
-    function BubbleChart(data) {
-        this.hide_details = __bind(this.hide_details, this);
-
-        this.show_details = __bind(this.show_details, this);
-
-        this.hide_categories = __bind(this.hide_categories, this);
-
-        this.display_categories = __bind(this.display_categories, this);
-
-        this.move_towards_category = __bind(this.move_towards_category, this);
-
-        this.display_by_category = __bind(this.display_by_category, this);
-
-        this.move_towards_center = __bind(this.move_towards_center, this);
-
-        this.display_group_all = __bind(this.display_group_all, this);
-
-        this.start = __bind(this.start, this);
-
-        this.create_vis = __bind(this.create_vis, this);
-
-        this.create_nodes = __bind(this.create_nodes, this);
-
-        var max_amount;
-        this.data = data;
-        this.width = 600;
-        this.height = 400;
-        this.tooltip = CustomTooltip("pulse_tooltip", 240);
-        this.center = {
-            x: this.width / 2,
-            y: this.height / 2
-        };
-        this.category_centers = {
-            "Advertising": {
-                x: this.width / 4,
-                y: this.height / 2
-            },
-            "Tech": {
-                x: this.width / 3,
-                y: this.height / 2
-            },
-            "Education": {
-                x: this.width / 2,
-                y: this.height / 2
-            },
-            "Ecommerce": {
-                x: 2 * this.width / 3.1,
-                y: this.height / 2
-            },
-            "Other": {
-                x: 2 * this.width / 2.5,
-                y: this.height / 2
-            }
-        };
-        this.layout_gravity = -0.01;
-        this.damper = 0.1;
-        this.vis = null;
-        this.nodes = [];
-        this.force = null;
-        this.circles = null;
-        this.fill_color = d3.scale.category20c();
-        max_amount = d3.max(this.data, function(d) {
-            return parseInt(d.total_amount);
-        });
-        this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 220]).range([5, 60]);
-        this.create_nodes();
-        this.create_vis();
-    }
-
-    BubbleChart.prototype.create_nodes = function() {
-        var _this = this;
-        this.data.forEach(function(d) {
-            var node;
-            node = {
-                id: d.id,
-                radius: _this.radius_scale(parseInt(d.total_amount)),
-                value: d.total_amount,
-                name: d.name,
-                org: d.twitter_username,
-                group: d.group,
-                category: d.category_code,
-                x: Math.random() * 900,
-                y: Math.random() * 800
-            };
-            return _this.nodes.push(node);
-        });
-        return this.nodes.sort(function(a, b) {
-            return b.value - a.value;
-        });
-    };
-
-    BubbleChart.prototype.create_vis = function() {
-        var that,
-            _this = this;
-        this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
-        this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
-            return d.id;
-        });
-        that = this;
-        this.circles.enter().append("circle").attr("r", 0).attr("fill", function(d) {
-            return _this.fill_color(d.value);
-        }).attr("stroke-width", 1).attr("stroke", function(d) {
-            return d3.rgb(_this.fill_color(d.value)).brighter();
-        }).attr("id", function(d) {
-            return "bubble_" + d.id;
-        }).style("opacity", "0.8").on("mouseover", function(d, i) {
-            return that.show_details(d, i, this);
-        }).on("mouseout", function(d, i) {
-            return that.hide_details(d, i, this);
-        });
-        return this.circles.transition().duration(2000).attr("r", function(d) {
-            return d.radius;
-        });
-    };
-
-    BubbleChart.prototype.charge = function(d) {
-        return -Math.pow(d.radius, 2.0) / 8;
-    };
-
-    BubbleChart.prototype.start = function() {
-        return this.force = d3.layout.force().nodes(this.nodes).size([this.width, this.height]);
-    };
-
-    BubbleChart.prototype.display_group_all = function() {
-        var _this = this;
-        this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", function(e) {
-            return _this.circles.each(_this.move_towards_center(e.alpha)).attr("cx", function(d) {
-                return d.x;
-            }).attr("cy", function(d) {
-                return d.y;
-            });
-        });
-        this.force.start();
-        return this.hide_categories();
-    };
-
-    BubbleChart.prototype.move_towards_center = function(alpha) {
-        var _this = this;
-        return function(d) {
-            d.x = d.x + (_this.center.x - d.x) * (_this.damper + 0.02) * alpha;
-            return d.y = d.y + (_this.center.y - d.y) * (_this.damper + 0.02) * alpha;
-        };
-    };
-
-    BubbleChart.prototype.display_by_category = function() {
-        var _this = this;
-        this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", function(e) {
-            return _this.circles.each(_this.move_towards_category(e.alpha)).attr("cx", function(d) {
-                return d.x;
-            }).attr("cy", function(d) {
-                return d.y;
-            });
-        });
-        this.force.start();
-        return this.display_categories();
-    };
-
-    BubbleChart.prototype.move_towards_category = function(alpha) {
-        var _this = this;
-        return function(d) {
-            var target;
-            target = _this.category_centers[d.category];
-            d.x = d.x + (target.x - d.x) * (_this.damper + 0.02) * alpha * 1.1;
-            return d.y = d.y + (target.y - d.y) * (_this.damper + 0.02) * alpha * 1.1;
-        };
-  };
-
-    BubbleChart.prototype.display_categories = function() {
-        var categories,
-            categories_data,
-            categories_x,
-            _this = this;
-        categories_x = {
-            "Advertising": 60,
-            "Tech": this.width / 3.3,
-            "Education": this.width / 2,
-            "Ecommerce": this.width / 1.4,
-            "Other": this.width - 60
-        };
-        categories_data = d3.keys(categories_x);
-        categories = this.vis.selectAll(".categories").data(categories_data);
-        return categories.enter().append("text").attr("class", "categories").attr("x", function(d) {
-            return categories_x[d];
-        }).attr("y", 40).attr("text-anchor", "middle").text(function(d) {
-            return d;
-        });
-    };
-
-    BubbleChart.prototype.hide_categories = function() {
-        var categories;
-        return categories = this.vis.selectAll(".categories").remove();
-    };
-
-    BubbleChart.prototype.show_details = function(data, i, element) {
-        var content,
-            _this = this;
-        d3.select(element).attr("stroke", function(d) {
-            return d3.rgb(_this.fill_color(d.value)).darker();
-        });
-        content = "<span class=\"name\"></span><span class=\"value\"> <h3>" + data.name + "</h3></span><hr>";
-        content += "<span class=\"name\">Pulse:</span><span class=\"value\"> " + data.value + "</span><br/>";
-        content += "<span class=\"name\">Sector:</span><span class=\"value\"> " + data.category + "</span>";
-        return this.tooltip.showTooltip(content, d3.event);
-    };
-
-    BubbleChart.prototype.hide_details = function(data, i, element) {
-        var _this = this;
-        d3.select(element).attr("stroke", function(d) {
-            return d3.rgb(_this.fill_color(d.group)).brighter();
-        });
-        return this.tooltip.hideTooltip();
-    };
-
-    return BubbleChart;
-
-})();
-
-root = typeof exports !== "undefined" && exports !== null ? exports : this;
-
-$(function() {
-    var chart,
-        render_vis,
-        _this = this;
-        chart = null;
-    render_vis = function(csv) {
-        chart = new BubbleChart(csv);
-        chart.start();
-        return root.display_all();
-    };
-    root.display_all = function() {
-        return chart.display_group_all();
-    };
-    root.display_category = function() {
-        return chart.display_by_category();
-    };
-    root.toggle_view = function(view_type) {
-        if (view_type === 'category') {
-            return root.display_category();
-        } else {
-            return root.display_all();
-        }
-    };
-    return d3.csv("assets/pulse.csv", render_vis);
-});
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
