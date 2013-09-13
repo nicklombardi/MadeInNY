@@ -34,7 +34,7 @@
   #main-footer {
   postion: fixed;
   margin-left: 75px;
-  margin-top: 95%;
+  margin-top: 90%;
   margin-bottom: 5%;
   }
 }
@@ -54,10 +54,9 @@
   #main-footer {
   postion: fixed;
   margin-left: 30px;
-  margin-top: 0%;
+  margin-top: 900px;
   margin-bottom: 5%;
   }
 }
-
 
 html.chrome div#main-footer { margin-top: 10px; }
