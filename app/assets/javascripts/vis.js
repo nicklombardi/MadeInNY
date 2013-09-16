@@ -82,16 +82,37 @@ BubbleChart = (function() {
         this.data.forEach(function(d) {
             var node;
             node = {
-                id: d.id,
-                radius: _this.radius_scale(parseInt(d.total_amount)),
-                value: d.total_amount,
-                name: d.name,
-                org: d.twitter_username,
+                // id: d.id,
+                // radius: _this.radius_scale(parseInt(d.total_amount)),
+                // value: d.total_amount,
+                // name: d.name,
+                // org: d.twitter_username,
+                // group: d.group,
+                // category: d.category_code,
+                id: d[1],
+                radius: _this.radius_scale(parseInt(d[3])),
+                value: d[3],
+                name: d[0],
+                org: d[2],
                 group: d.group,
-                category: d.category_code,
+                category: d[4],
                 x: Math.random() * 900,
                 y: Math.random() * 800
             };
+
+            // reassigning value of node.category for sorting bubbles into categories
+            if ((d[4] === "advertising") || (d[4] === "public_relations")) {
+                node.category = "Advertising";
+            } else if ((d[4] === "web") || (d[4] === "search") || (d[4] === "mobile") || (d[4] === "software") || (d[4] === "hardware") || (d[4] === "games_video") || (d[4] === "cleantech") || (d[4] === "social") || (d[4] === "messaging") || (d[4] === "photo_video")) {
+                node.category = "Tech";
+            } else if (d[4] === "education") {
+                node.category = "Education";
+            } else if (d[4] === "ecommerce") {
+                node.category = "Ecommerce";
+            } else {
+                node.category = "Other";
+            }
+
             return _this.nodes.push(node);
         });
         return this.nodes.sort(function(a, b) {
@@ -227,16 +248,45 @@ BubbleChart = (function() {
 
 root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-$(function() {
+// $(function() {
+//     var chart,
+//         render_vis,
+//         _this = this;
+//         chart = null;
+//     render_vis = function(csv) {
+//         chart = new BubbleChart(csv);
+//         chart.start();
+//         return root.display_all();
+//     };
+//     root.display_all = function() {
+//         return chart.display_group_all();
+//     };
+//     root.display_category = function() {
+//         return chart.display_by_category();
+//     };
+//     root.toggle_view = function(view_type) {
+//         if (view_type === 'category') {
+//             return root.display_category();
+//         } else {
+//             return root.display_all();
+//         }
+//     };
+//     return d3.csv("assets/pulse.csv", render_vis);
+// });
+
+var visTestData = [["BeenVerified",13,"BeenVerified",0,"Other"], ["Bitly",19,"bitly",-1,"Tech"]];
+
+// $(function() {
+var displayBubbleChart = function() {
     var chart,
         render_vis,
         _this = this;
         chart = null;
-    render_vis = function(csv) {
-        chart = new BubbleChart(csv);
-        chart.start();
-        return root.display_all();
-    };
+    // render_vis = function() {
+    //     chart = new BubbleChart(visTestData);
+    //     chart.start();
+    //     return root.display_all();
+    // };
     root.display_all = function() {
         return chart.display_group_all();
     };
@@ -250,5 +300,9 @@ $(function() {
             return root.display_all();
         }
     };
-    return d3.csv("assets/pulse.csv", render_vis);
-});
+    chart = new BubbleChart(twitterPulseData);
+    // chart = new BubbleChart(visTestData);
+    chart.start();
+    return root.display_all();
+};
+// });
