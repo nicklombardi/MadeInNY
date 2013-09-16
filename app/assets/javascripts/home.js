@@ -23,7 +23,9 @@ var companiesObject,
         finance: 0,
         education: 0,
         enterprise: 0
-    };
+    },
+    // for making twitter bubbles
+    twitterPulseData = [];
 
 // this is just for our knowledge (seeing what the categories are) and how many companies we don't have funding info for
 var allCategoriesArray = [],
@@ -89,7 +91,7 @@ var getCompanyData = {
             }
 
             //put stuff in bubble
-            // bubbleInBubbleChart.push(data[i].name, data[i].id, data[i].twitter_username, data[i].total_amount);
+            twitterPulseData.push([data[i].name, data[i].id, data[i].twitter_username, data[i].total_amount, data[i].category_code]);
 
             // populates global variable dataset array
             // for dots
@@ -122,6 +124,8 @@ var getCompanyData = {
         // calls d3PlotPoints function to create points and description divs using global variable dataset
         console.log("creating dots all over the place");
         makeMap.d3PlotPoints(dataset);
+        // makes the bubble chart
+        displayBubbleChart();
     }
 };
 
