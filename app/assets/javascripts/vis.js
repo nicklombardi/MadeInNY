@@ -287,6 +287,7 @@ var displayBubbleChart = function() {
     //     chart.start();
     //     return root.display_all();
     // };
+
     root.display_all = function() {
         return chart.display_group_all();
     };
