@@ -10366,7 +10366,7 @@ BubbleChart = (function() {
         max_amount = d3.max(this.data, function(d) {
             return parseInt(d.total_amount);
         });
-        this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 220]).range([5, 60]);
+        this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 1200]).range([3, 90]);
         this.create_nodes();
         this.create_vis();
     }
@@ -10376,16 +10376,37 @@ BubbleChart = (function() {
         this.data.forEach(function(d) {
             var node;
             node = {
-                id: d.id,
-                radius: _this.radius_scale(parseInt(d.total_amount)),
-                value: d.total_amount,
-                name: d.name,
-                org: d.twitter_username,
+                // id: d.id,
+                // radius: _this.radius_scale(parseInt(d.total_amount)),
+                // value: d.total_amount,
+                // name: d.name,
+                // org: d.twitter_username,
+                // group: d.group,
+                // category: d.category_code,
+                id: d[1],
+                radius: _this.radius_scale(parseInt(d[3])),
+                value: d[3],
+                name: d[0],
+                org: d[2],
                 group: d.group,
-                category: d.category_code,
+                category: d[4],
                 x: Math.random() * 900,
                 y: Math.random() * 800
             };
+
+            // reassigning value of node.category for sorting bubbles into categories
+            if ((d[4] === "advertising") || (d[4] === "public_relations")) {
+                node.category = "Advertising";
+            } else if ((d[4] === "web") || (d[4] === "search") || (d[4] === "mobile") || (d[4] === "software") || (d[4] === "hardware") || (d[4] === "games_video") || (d[4] === "cleantech") || (d[4] === "social") || (d[4] === "messaging") || (d[4] === "photo_video")) {
+                node.category = "Tech";
+            } else if (d[4] === "education") {
+                node.category = "Education";
+            } else if (d[4] === "ecommerce") {
+                node.category = "Ecommerce";
+            } else {
+                node.category = "Other";
+            }
+
             return _this.nodes.push(node);
         });
         return this.nodes.sort(function(a, b) {
@@ -10521,16 +10542,45 @@ BubbleChart = (function() {
 
 root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-$(function() {
+// $(function() {
+//     var chart,
+//         render_vis,
+//         _this = this;
+//         chart = null;
+//     render_vis = function(csv) {
+//         chart = new BubbleChart(csv);
+//         chart.start();
+//         return root.display_all();
+//     };
+//     root.display_all = function() {
+//         return chart.display_group_all();
+//     };
+//     root.display_category = function() {
+//         return chart.display_by_category();
+//     };
+//     root.toggle_view = function(view_type) {
+//         if (view_type === 'category') {
+//             return root.display_category();
+//         } else {
+//             return root.display_all();
+//         }
+//     };
+//     return d3.csv("assets/pulse.csv", render_vis);
+// });
+
+var visTestData = [["BeenVerified",13,"BeenVerified",0,"Other"], ["Bitly",19,"bitly",-1,"Tech"]];
+
+// $(function() {
+var displayBubbleChart = function() {
     var chart,
         render_vis,
         _this = this;
         chart = null;
-    render_vis = function(csv) {
-        chart = new BubbleChart(csv);
-        chart.start();
-        return root.display_all();
-    };
+    // render_vis = function() {
+    //     chart = new BubbleChart(visTestData);
+    //     chart.start();
+    //     return root.display_all();
+    // };
     root.display_all = function() {
         return chart.display_group_all();
     };
@@ -10544,8 +10594,12 @@ $(function() {
             return root.display_all();
         }
     };
-    return d3.csv("assets/pulse.csv", render_vis);
-});
+    chart = new BubbleChart(twitterPulseData);
+    // chart = new BubbleChart(visTestData);
+    chart.start();
+    return root.display_all();
+};
+// });
 (function() {
   var CSRFToken, anchoredLink, browserCompatibleDocumentParser, browserIsntBuggy, browserSupportsPushState, cacheCurrentPage, cacheSize, changePage, constrainPageCacheTo, createDocument, crossOriginLink, currentState, executeScriptTags, extractLink, extractTitleAndBody, fetchHistory, fetchReplacement, handleClick, ignoreClick, initializeTurbolinks, installClickHandlerLast, loadedAssets, noTurbolink, nonHtmlLink, nonStandardClick, pageCache, pageChangePrevented, pagesCached, processResponse, recallScrollPosition, referer, reflectNewUrl, reflectRedirectedUrl, rememberCurrentState, rememberCurrentUrl, removeHash, removeNoscriptTags, requestMethod, requestMethodIsSafe, resetScrollPosition, targetLink, triggerEvent, visit, xhr, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11178,7 +11232,9 @@ var companiesObject,
         finance: 0,
         education: 0,
         enterprise: 0
-    };
+    },
+    // for making twitter bubbles
+    twitterPulseData = [];
 
 // this is just for our knowledge (seeing what the categories are) and how many companies we don't have funding info for
 var allCategoriesArray = [],
@@ -11244,7 +11300,7 @@ var getCompanyData = {
             }
 
             //put stuff in bubble
-            // bubbleInBubbleChart.push(data[i].name, data[i].id, data[i].twitter_username, data[i].total_amount);
+            twitterPulseData.push([data[i].name, data[i].id, data[i].twitter_username, data[i].total_amount, data[i].category_code]);
 
             // populates global variable dataset array
             // for dots
@@ -11277,6 +11333,8 @@ var getCompanyData = {
         // calls d3PlotPoints function to create points and description divs using global variable dataset
         console.log("creating dots all over the place");
         makeMap.d3PlotPoints(dataset);
+        // makes the bubble chart
+        displayBubbleChart();
     }
 };
 

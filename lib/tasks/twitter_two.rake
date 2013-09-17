@@ -1,17 +1,17 @@
-task twitter: :environment do
+task twitter_two: :environment do
 
 require 'twitter'
 
 Twitter.configure do |config|
-  config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
-  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
-  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
+  config.consumer_key = ENV['TWITTER_CONSUMER_KEY2']
+  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET2']
+  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN2']
+  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET2']
 end
 
 companies = Company.all
 
-companies[0..100].each do |company|
+companies[101..200].each do |company|
   unless company.twitter_username.nil? || company.latitude.nil?
     begin
       current_followers = Twitter.user(company.twitter_username)[:followers_count]
