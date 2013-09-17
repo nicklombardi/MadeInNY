@@ -10366,7 +10366,7 @@ BubbleChart = (function() {
         max_amount = d3.max(this.data, function(d) {
             return parseInt(d.total_amount);
         });
-        this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 1200]).range([3, 90]);
+        this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, 3000]).range([3, 90]);
         this.create_nodes();
         this.create_vis();
     }
@@ -10581,6 +10581,7 @@ var displayBubbleChart = function() {
     //     chart.start();
     //     return root.display_all();
     // };
+
     root.display_all = function() {
         return chart.display_group_all();
     };
