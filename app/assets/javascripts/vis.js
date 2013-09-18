@@ -82,6 +82,9 @@ BubbleChart = (function() {
         this.data.forEach(function(d) {
             var node;
             node = {
+
+                // if statement to remove zeros
+
                 // id: d.id,
                 // radius: _this.radius_scale(parseInt(d.total_amount)),
                 // value: d.total_amount,
