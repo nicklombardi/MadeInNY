@@ -81,8 +81,10 @@ BubbleChart = (function() {
         var _this = this;
         this.data.forEach(function(d) {
             var node;
+                if (d[3] <= 0) {
+                    console.log("zero pulse")
+                } else {
             node = {
-
                 // if statement to remove zeros
 
                 // id: d.id,
@@ -101,6 +103,7 @@ BubbleChart = (function() {
                 category: d[4],
                 x: Math.random() * 900,
                 y: Math.random() * 800
+
             };
 
             // reassigning value of node.category for sorting bubbles into categories
@@ -117,6 +120,7 @@ BubbleChart = (function() {
             }
 
             return _this.nodes.push(node);
+        }
         });
         return this.nodes.sort(function(a, b) {
             return b.value - a.value;
